@@ -1,0 +1,468 @@
+% ========================================================================
+% Arquivo de personalização IFPI para template LaTeX ABNT
+% Baseado na classe abntex2 com customizações específicas do IFPI
+% Versão: 1.0 - 2024
+% Autor: Template IFPI
+% ========================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{abntex-ifpi}[2024/01/01 v1.0 Personalizacoes IFPI para abntex2]
+
+% ========================================================================
+% PACOTES NECESSÁRIOS
+% ========================================================================
+
+\RequirePackage{graphicx}           % Para inclusão de imagens
+\RequirePackage{xcolor}             % Para definição de cores
+\RequirePackage{geometry}           % Para configuração de margens
+\RequirePackage{setspace}           % Para espaçamento entre linhas
+\RequirePackage{indentfirst}        % Para indentação do primeiro parágrafo
+\RequirePackage{microtype}          % Para melhor tipografia
+\RequirePackage{caption}            % Para personalização de legendas
+\RequirePackage{booktabs}           % Para tabelas profissionais
+\RequirePackage{array}              % Para melhor formatação de tabelas
+\RequirePackage{longtable}          % Para tabelas longas
+\RequirePackage{multirow}           % Para células mescladas em tabelas
+\RequirePackage{changepage}         % Para ajuste de largura (recuo de citações)
+\RequirePackage{etoolbox}           % Hooks para ambientes (AtBeginEnvironment)
+\RequirePackage{newfloat}           % Para definir ambiente 'quadro' como float
+\RequirePackage{float}              % Ferramentas adicionais para floats
+\RequirePackage{chngcntr}           % Controle de contadores
+
+% ========================================================================
+% DEFINIÇÃO DE CORES INSTITUCIONAIS IFPI
+% ========================================================================
+
+\definecolor{ifpiazul}{RGB}{0,51,102}      % Azul institucional IFPI #003366
+\definecolor{ifpiverde}{RGB}{0,150,57}     % Verde institucional IFPI #009639
+\definecolor{ifpicinza}{RGB}{102,102,102}  % Cinza para elementos auxiliares #666666
+
+% ========================================================================
+% CONFIGURAÇÕES DE FORMATAÇÃO ABNT
+% ========================================================================
+
+% Configuração de margens conforme NBR 14724:2011
+\geometry{
+    a4paper,
+    left=3cm,
+    right=2cm,
+    top=3cm,
+    bottom=2cm
+}
+
+% Configuração de espaçamento
+\OnehalfSpacing  % Espaçamento 1,5 entre linhas (comando do abntex2)
+
+% Indentação de parágrafos
+\setlength{\parindent}{1.25cm}
+
+% ========================================================================
+% CONFIGURAÇÕES DE FONTES CONFORME NBR 14724:2011
+% ========================================================================
+
+% Fonte padrão: 12pt para todo o texto
+\renewcommand{\normalsize}{\fontsize{12pt}{18pt}\selectfont}
+
+% Fonte 10pt para elementos específicos
+\renewcommand{\scriptsize}{\fontsize{10pt}{12pt}\selectfont}
+
+% Configurar citações longas (mais de 3 linhas) com fonte 10pt e recuo de 4 cm
+\renewenvironment{citacao}{%
+    \SingleSpacing% espaçamento simples conforme ABNT
+    \footnotesize% fonte menor (10pt)
+    \begin{adjustwidth}{4cm}{0cm}% recuo de 4 cm à esquerda, 0 cm à direita
+}{%
+    \end{adjustwidth}%
+}
+
+% Espaçamento simples nos ambientes de resumo (Português) e abstract (Inglês)
+% O ambiente 'resumo' do abntex2 aceita opcional [Abstract] para a versão em inglês
+\AtBeginEnvironment{resumo}{\SingleSpacing}
+
+% Configurar notas de rodapé com fonte 10pt
+\renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
+
+% Configurar legendas de figuras e tabelas com fonte 10pt
+\captionsetup{font=footnotesize}
+
+% Configurar paginação com fonte 10pt
+\renewcommand{\ABNTEXfontereduzida}{\footnotesize}
+
+% ========================================================================
+% COMANDOS PERSONALIZADOS PARA DADOS INSTITUCIONAIS
+% ========================================================================
+
+% Comando para definir o campus
+\newcommand{\campus}[1]{\def\@campus{#1}}
+\newcommand{\@campus}{}
+
+% Comando para definir o curso
+\newcommand{\curso}[1]{\def\@curso{#1}}
+\newcommand{\@curso}{}
+
+% Comando para definir a área de concentração
+\newcommand{\areaconcentracao}[1]{\def\@areaconcentracao{#1}}
+\newcommand{\@areaconcentracao}{}
+
+% Comando para definir a natureza do trabalho
+\newcommand{\naturezatrabalho}[1]{\def\@naturezatrabalho{#1}}
+\newcommand{\@naturezatrabalho}{Projeto de pesquisa apresentado ao Instituto Federal de Educação, Ciência e Tecnologia do Piauí como requisito para aprovação na disciplina.}
+
+% Comando para definir o grau pretendido
+\newcommand{\grau}[1]{\def\@grau{#1}}
+\newcommand{\@grau}{}
+
+% ========================================================================
+% PERSONALIZAÇÃO DA CAPA
+% ========================================================================
+
+\renewcommand{\imprimircapa}{%
+    \begin{capa}%
+        \center
+        
+        % Logo IFPI
+        \includegraphics[width=2.2cm]{img/Logo-IFPI-IF.png}
+        % \vspace{0.5cm}
+        
+        % Nome da instituição
+        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirinstituicao}}
+        % \vspace{0.2cm}
+        
+        % Campus
+        \ifx\@campus\empty\else
+            {\ABNTEXchapterfont\normalsize\MakeUppercase{\@campus}}
+            % \vspace{0.2cm}
+        \fi
+        
+        % Curso
+        \ifx\@curso\empty\else
+            {\ABNTEXchapterfont\normalsize\MakeUppercase{\@curso}}
+            % \vspace{0.3cm}
+        \fi
+        
+        \vfill
+        
+        % Nome do autor
+        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirautor}}
+        
+        \vfill
+        
+        % Título do trabalho
+        {\ABNTEXchapterfont\bfseries\normalsize\MakeUppercase{\imprimirtitulo}}
+        
+        \vfill
+        
+        % Local e data
+        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirlocal}}
+        \par
+        {\ABNTEXchapterfont\normalsize\imprimirdata}
+        
+        \vspace*{1cm}
+    \end{capa}
+}
+
+% ========================================================================
+% PERSONALIZAÇÃO DA FOLHA DE ROSTO
+% ========================================================================
+
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+    \begin{center}
+        % Nome do autor
+        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirautor}}
+        
+        \vspace*{\fill}
+        
+        % Título
+        {\ABNTEXchapterfont\bfseries\normalsize\MakeUppercase{\imprimirtitulo}}
+        
+        \vspace*{\fill}
+        
+        % Natureza do trabalho
+        \abntex@ifnotempty{\imprimirpreambulo}{%
+            \hspace{.45\textwidth}
+            \begin{minipage}{.5\textwidth}
+                \SingleSpacing
+                \imprimirpreambulo
+                
+                \ifx\@areaconcentracao\empty\else
+                    \vspace{0.5cm}
+                    Área de concentração: \@areaconcentracao
+                \fi
+                
+                \ifx\imprimirorientador\empty\else
+                    \vspace{0.5cm}
+                    Orientador: \imprimirorientador
+                \fi
+                
+                \abntex@ifnotempty{\imprimircoorientador}{%
+                    \vspace{0.5cm}
+                    Coorientador: \imprimircoorientador
+                }%
+            \end{minipage}%
+        }%
+        
+        \vspace*{\fill}
+        
+        % Local e data
+        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirlocal}}
+        \par
+        {\ABNTEXchapterfont\normalsize\imprimirdata}
+    \end{center}
+}
+\makeatother
+
+% ========================================================================
+% CONFIGURAÇÕES DE SUMÁRIO
+% ========================================================================
+
+% Personalização do sumário conforme NBR 6027:2012
+\setlength{\cftbeforechapterskip}{0pt}
+\renewcommand{\cftchapterfont}{\bfseries}
+\renewcommand{\cftchapterpagefont}{\bfseries}
+
+% Configuração de profundidade do sumário (até 3 níveis)
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% ========================================================================
+% CONFIGURAÇÕES DE CITAÇÕES E REFERÊNCIAS
+% ========================================================================
+
+% Configurações para citações ABNT NBR 10520:2023
+% Configurar formato autor-data com parênteses (não colchetes)
+\citebrackets()  % Usar parênteses para citações autor-data conforme NBR 10520:2023
+
+% Estilo de citação IFPI – NBR 10520:2023 (autor–data com parênteses)
+% Sobrescreve o comportamento do \cite para não usar nomes em CAIXA ALTA
+% Mantém \citeonline em formato textual "Autor (ano)"
+
+% Captura autores em forma EXPL do arquivo .aux para evitar caixa alta
+\makeatletter
+\let\IFPI@orig@bibciteEXPL\bibciteEXPL
+\renewcommand{\bibciteEXPL}[2]{% key, value
+  \IFPI@orig@bibciteEXPL{#1}{#2}% mantém funcionamento original
+  \expandafter\gdef\csname IFPI@EXPL@#1\endcsname{#2}% armazena forma EXPL acessível
+}
+\makeatother
+
+% Ajuda: retorna autor na forma EXPL se disponível, senão faz fallback para \citeauthor
+\makeatletter
+\newcommand{\ABNTIFPI@AuthorExpl}[1]{%
+  \@ifundefined{IFPI@EXPL@#1}{\citeauthor{#1}}{\csname IFPI@EXPL@#1\endcsname}%
+}
+\makeatother
+
+\makeatletter
+% \cite opcionalmente aceita página/nota em #1, e chaves em #2 (lista separada por vírgulas)
+\renewcommand{\cite}[2][]{%
+  \begingroup
+    \def\abntifpi@opt{#1}% opcional: página/nota (ex.: p.~10)
+    \def\abntifpi@list{#2}% lista de chaves
+    \abntifpi@cite@split\abntifpi@list,\@nil
+  \endgroup
+}
+
+% Divide lista de chaves por vírgula e insere separador "; "
+\def\abntifpi@cite@split#1,#2\@nil{%
+  \abntifpi@cite@one{#1}{\abntifpi@opt}%
+  \ifx\relax#2\relax
+  \else
+    ;\space \abntifpi@cite@split#2\@nil
+  \fi
+}
+
+% Citação individual no formato (Autor, ano[, opcional]) usando forma EXPL e \citeyear
+\def\abntifpi@cite@one#1#2{%
+  \begingroup
+    \def\abntifpi@a{\ABNTIFPI@AuthorExpl{#1}}% autor com capitalização correta (não CAIXA ALTA)
+    \def\abntifpi@y{\citeyear{#1}}% ano
+    % Testa argumento opcional vazio após expansão
+    \if\relax\expandafter\detokenize\expandafter{#2}\relax
+      (\abntifpi@a, \abntifpi@y)%
+    \else
+      (\abntifpi@a, \abntifpi@y, #2)%
+    \fi
+  \endgroup
+}
+
+% \citeonline textual: Autor (ano[, opcional]) com suporte a múltiplas chaves
+\def\abntifpi@citeonline@one#1#2{%
+  \begingroup
+    \def\abntifpi@a{\ABNTIFPI@AuthorExpl{#1}}% autor em forma EXPL
+    \def\abntifpi@y{\citeyear{#1}}% ano
+    % Testa argumento opcional vazio após expansão
+    \if\relax\expandafter\detokenize\expandafter{#2}\relax
+      \abntifpi@a\space(\abntifpi@y)%
+    \else
+      \abntifpi@a\space(\abntifpi@y, #2)%
+    \fi
+  \endgroup
+}
+\makeatother
+
+% Configurações para referências NBR 6023:2023
+\renewcommand{\bibsection}{%
+    \chapter*{\bibname}
+    \bibmark
+    \ifnobibintoc\else
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\bibname}
+    \fi
+    \prebibhook
+}
+
+% ========================================================================
+% CONFIGURAÇÕES DE LEGENDAS E TABELAS
+% ========================================================================
+
+% Configuração de legendas conforme ABNT
+\captionsetup{
+    font=normalsize,             % Fonte tamanho 12pt
+    labelsep=endash,             % Separador: travessão
+    justification=centering,     % Texto centralizado
+    singlelinecheck=false,       % Aplicar centralização também em uma linha
+    format=plain,                % Formato simples (sem suspensão)
+    indention=0pt                % Sem indentação adicional
+}
+
+% Configuração específica para tabelas
+\captionsetup[table]{
+    position=top,               % Legenda acima da tabela
+    skip=6pt                    % Espaço entre legenda e tabela
+}
+
+% Configuração específica para figuras
+\captionsetup[figure]{
+    position=top,               % Legenda acima da figura
+    skip=6pt                    % Espaço entre figura e legenda
+}
+
+% Definição do ambiente 'quadro'
+\DeclareFloatingEnvironment[
+    fileext=loq,
+    name=Quadro,
+    listname={Lista de Quadros},
+    placement=htbp
+]{quadro}
+\floatname{quadro}{Quadro}
+\renewcommand{\quadroname}{Quadro}
+\makeatletter
+\@ifundefined{cftquadronumwidth}{\newlength{\cftquadronumwidth}}{}%
+\@ifundefined{cftquadroindent}{\newlength{\cftquadroindent}}{}%
+\setlength{\cftquadronumwidth}{6em}%
+\setlength{\cftquadroindent}{0pt}%
+\providecommand{\cftquadropresnum}{}
+\providecommand{\cftquadroaftersnum}{}
+\makeatother
+\renewcommand{\cftquadropresnum}{Quadro~}
+\renewcommand{\cftquadroaftersnum}{\space--\space}
+\counterwithout{quadro}{chapter}
+\renewcommand{\thequadro}{\arabic{quadro}}
+\captionsetup[quadro]{
+    position=top,               % Legenda acima do quadro
+    skip=6pt,                   % Espaço entre legenda e conteúdo
+    name=Quadro                 % Prefixo "Quadro"
+}
+% ========================================================================
+% CONFIGURAÇÕES DE LISTAS
+% ========================================================================
+
+% Comando para lista de abreviaturas
+\newcommand{\listadeabreviaturas}{
+    \pretextualchapter{LISTA DE ABREVIATURAS E SIGLAS}
+    \begin{symbols}
+        % Exemplo de uso:
+        % ABNT & Associação Brasileira de Normas Técnicas \\
+        % IFPI & Instituto Federal de Educação, Ciência e Tecnologia do Piauí \\
+    \end{symbols}
+}
+
+% Comando para lista de símbolos
+\newcommand{\listadesimbolos}{
+    \pretextualchapter{LISTA DE SÍMBOLOS}
+    \begin{symbols}
+        % Exemplo de uso:
+        % $\alpha$ & Nível de significância \\
+        % $\beta$ & Coeficiente de regressão \\
+    \end{symbols}
+}
+
+% ========================================================================
+% CONFIGURAÇÕES DE SEÇÕES E CAPÍTULOS
+% ========================================================================
+
+% Configuração de títulos de capítulos
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+
+% Configuração de títulos de seções
+\renewcommand{\ABNTEXsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+
+% Configuração de títulos de subseções
+\renewcommand{\ABNTEXsubsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+% Configuração de títulos de subsubseções
+\renewcommand{\ABNTEXsubsubsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+% ========================================================================
+% CONFIGURAÇÕES DE NUMERAÇÃO DE PÁGINAS
+% ========================================================================
+
+% Configuração para numeração a partir da introdução
+\renewcommand{\pretextual}{%
+    \aliaspagestyle{chapter}{empty}
+    \pagestyle{empty}
+    \aliaspagestyle{cleared}{empty}
+    \aliaspagestyle{part}{empty}
+}
+
+% Cabeçalho IFPI: apenas número da página no canto superior direito
+\makepagestyle{ifpihead}
+\makeoddhead{ifpihead}{}{}{\thepage}
+\makeoddfoot{ifpihead}{}{}{}
+\makeheadrule{ifpihead}{0pt}{0pt} % sem linha
+% (sem linha de rodapé)
+
+\renewcommand{\textual}{%
+    \pagestyle{ifpihead}
+    \aliaspagestyle{chapter}{ifpihead}
+    \nouppercaseheads
+    \bookmarksetup{startatroot}
+}
+
+% ========================================================================
+% COMANDOS AUXILIARES
+% ========================================================================
+
+% Comando para inserir quebra de página quando necessário
+\newcommand{\quebrapagina}{\clearpage}
+
+% Comando para espaçamento simples em trechos específicos
+\newcommand{\espacosimples}{\SingleSpacing}
+
+% Comando para espaçamento duplo em trechos específicos
+\newcommand{\espacoduplo}{\DoubleSpacing}
+
+% Comando para texto em fonte menor (notas, legendas)
+\newcommand{\fontemenor}{\footnotesize}
+
+% ========================================================================
+% CONFIGURAÇÕES FINAIS
+% ========================================================================
+
+% Configuração de hifenização
+\hyphenpenalty=5000
+\tolerance=1000
+
+% Configuração de espaçamento entre parágrafos
+\setlength{\parskip}{0pt}
+
+% Configuração de espaçamento antes e depois de títulos
+\setlength{\beforechapskip}{0pt}
+\setlength{\afterchapskip}{18pt}
+
+\endinput
