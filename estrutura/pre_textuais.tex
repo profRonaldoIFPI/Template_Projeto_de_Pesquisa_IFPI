@@ -108,7 +108,7 @@
 % ========================================================================
 % RESUMO EM INGLÊS (ABSTRACT)
 % ========================================================================
-\begin{resumo}[Abstract]
+\begin{resumo}[ABSTRACT]
     \begin{otherlanguage*}{english}
         This research project aims to [DESCRIBE THE MAIN OBJECTIVE OF THE RESEARCH]. The methodology used is based on [DESCRIBE THE METHODOLOGY: bibliographic research, case study, experimental research, etc.]. As theoretical framework, the works of [CITE MAIN AUTHORS IN THE FIELD] will be used. The research is justified by [PRESENT THE JUSTIFICATION AND RELEVANCE OF THE THEME]. Expected results include [DESCRIBE EXPECTED RESULTS]. This study will contribute to [PRESENT THE EXPECTED CONTRIBUTION TO THE KNOWLEDGE AREA]. The research will be developed in the period of [EXECUTION PERIOD] and will follow the ethical standards established for academic research.
         
@@ -123,7 +123,12 @@
 % ========================================================================
 % A lista sera gerada automaticamente se houver figuras no documento
 \pdfbookmark[0]{\listfigurename}{lof}
-\listoffigures*
+\begingroup
+  \makeatletter
+  \let\addvspace\@gobble
+  \makeatother
+  \listoffigures*
+\endgroup
 \cleardoublepage  % quebra de página
 
 % ========================================================================
@@ -131,7 +136,12 @@
 % ========================================================================
 % A lista sera gerada automaticamente se houver tabelas no documento
 \pdfbookmark[0]{\listtablename}{lot}
-\listoftables*
+\begingroup
+  \makeatletter
+  \let\addvspace\@gobble
+  \makeatother
+  \listoftables*
+\endgroup
 \cleardoublepage
 
 % ========================================================================

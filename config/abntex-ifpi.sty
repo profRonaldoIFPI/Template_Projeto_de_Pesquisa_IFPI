@@ -337,8 +337,23 @@
     position=top,               % Legenda acima da figura
     skip=6pt                    % Espaço entre figura e legenda
 }
+
+\newlength{\IFPIilluslabelwidth}
+\setlength{\IFPIilluslabelwidth}{7em} % largura fixa para labels+numeros das ilustrações
+\makeatletter
+\@ifundefined{cftfigindent}{\newlength{\cftfigindent}}{}
+\@ifundefined{cftfignumwidth}{\newlength{\cftfignumwidth}}{}
+\@ifundefined{cftbeforefigskip}{\newskip\cftbeforefigskip}{}
+\makeatother
+\setlength{\cftfigindent}{0pt}
+\setlength{\cftfignumwidth}{\IFPIilluslabelwidth}
+\setlength{\cftbeforefigskip}{0pt}
+\setlength{\cftfigureindent}{0pt}
+\setlength{\cftfigurenumwidth}{\IFPIilluslabelwidth}
 \setlength{\cftbeforefigureskip}{0pt}
-\renewcommand{\cftfigureaftersnum}{\space--\space}
+\setlength{\cftparskip}{0pt}
+\renewcommand{\cftfigurename}{\figurename\space}
+\renewcommand{\cftfigureaftersnum}{\hfill\textendash\hfill}
 
 % Evita centralização vertical de páginas com um único float
 \makeatletter
@@ -356,6 +371,7 @@
 ]{quadro}
 \floatname{quadro}{Quadro}
 \renewcommand{\quadroname}{Quadro}
+\providecommand{\cftquadroname}{\quadroname}
 \makeatletter
 \@ifundefined{cftquadronumwidth}{\newlength{\cftquadronumwidth}}{}%
 \@ifundefined{cftquadroindent}{\newlength{\cftquadroindent}}{}%
@@ -384,7 +400,7 @@
   
   % Ajusta prefixo e fonte na Lista de Quadros
 \renewcommand{\cftquadroname}{\quadroname\space}
-\renewcommand{\cftquadroaftersnum}{\space--\space}
+\renewcommand{\cftquadroaftersnum}{\hfill\textendash\hfill}
 \makeatletter
 \renewcommand*{\l@quadro}[2]{%
   \ifnum\c@lofdepth>0\relax
@@ -456,6 +472,23 @@
 \renewcommand{\ABNTEXsubsubsectionfont}{\bfseries}
 \renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
 
+% Nomes principais em caixa alta e negrito
+\addto\captionsbrazil{%
+  \renewcommand{\resumoname}{\bfseries\MakeUppercase{Resumo}}%
+  \renewcommand{\abstractname}{\bfseries\MakeUppercase{Abstract}}%
+  \renewcommand{\listfigurename}{\bfseries\MakeUppercase{Lista de Ilustrações}}%
+  \renewcommand{\listtablename}{\bfseries\MakeUppercase{Lista de Tabelas}}%
+  \renewcommand{\contentsname}{\bfseries\MakeUppercase{Sumário}}%
+  \renewcommand{\bibname}{\bfseries\MakeUppercase{Referências}}%
+}
+\addto\captionsenglish{%
+  \renewcommand{\abstractname}{\bfseries\MakeUppercase{Abstract}}%
+  \renewcommand{\listfigurename}{\bfseries\MakeUppercase{List of Illustrations}}%
+  \renewcommand{\listtablename}{\bfseries\MakeUppercase{List of Tables}}%
+  \renewcommand{\contentsname}{\bfseries\MakeUppercase{Contents}}%
+  \renewcommand{\bibname}{\bfseries\MakeUppercase{References}}%
+}
+
 % ========================================================================
 % CONFIGURAÇÕES DE NUMERAÇÃO DE PÁGINAS
 % ========================================================================
@@ -473,6 +506,7 @@
 \makeoddhead{ifpihead}{}{}{\thepage}
 \makeoddfoot{ifpihead}{}{}{}
 \makeheadrule{ifpihead}{0pt}{0pt} % sem linha
+\setlength{\headheight}{18pt} % altura suficiente para o cabecalho conforme memoir
 % (sem linha de rodapé)
 
 \renewcommand{\textual}{%
