@@ -337,10 +337,19 @@
     position=top,               % Legenda acima da figura
     skip=6pt                    % Espaço entre figura e legenda
 }
+\setlength{\cftbeforefigureskip}{0pt}
+\renewcommand{\cftfigureaftersnum}{\space--\space}
+
+% Evita centralização vertical de páginas com um único float
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{8pt}
+\setlength{\@fpbot}{0pt}
+\makeatother
 
 % Definição do ambiente 'quadro'
 \DeclareFloatingEnvironment[
-    fileext=loq,
+    fileext=lof,
     name=Quadro,
     listname={Lista de Quadros},
     placement=htbp
@@ -350,20 +359,59 @@
 \makeatletter
 \@ifundefined{cftquadronumwidth}{\newlength{\cftquadronumwidth}}{}%
 \@ifundefined{cftquadroindent}{\newlength{\cftquadroindent}}{}%
-\setlength{\cftquadronumwidth}{6em}%
-\setlength{\cftquadroindent}{0pt}%
+\@ifundefined{cftquadroname}{\newcommand{\cftquadroname}{}}{}%
+\@ifundefined{cftbeforequadroskip}{\newskip\cftbeforequadroskip}{}%
+\setlength{\cftquadronumwidth}{\cftfigurenumwidth}%
+\setlength{\cftquadroindent}{\cftfigureindent}%
+\setlength{\cftbeforequadroskip}{\cftbeforefigureskip}%
 \providecommand{\cftquadropresnum}{}
 \providecommand{\cftquadroaftersnum}{}
+\providecommand{\cftquadroaftersnumb}{}
+\providecommand{\cftquadrofont}{\cftfigurefont}
+\providecommand{\cftquadropagefont}{\cftfigurepagefont}
+\providecommand{\cftquadroleader}{\cftfigureleader}
+\providecommand{\cftquadroformatpnum}[1]{\cftfigureformatpnum{#1}}
+\providecommand{\cftquadroafterpnum}{\cftfigureafterpnum}
+\providecommand{\cftquadrofillnum}[1]{\cftfigurefillnum{#1}}
 \makeatother
-\renewcommand{\cftquadropresnum}{Quadro~}
-\renewcommand{\cftquadroaftersnum}{\space--\space}
 \counterwithout{quadro}{chapter}
 \renewcommand{\thequadro}{\arabic{quadro}}
 \captionsetup[quadro]{
-    position=top,               % Legenda acima do quadro
-    skip=6pt,                   % Espaço entre legenda e conteúdo
-    name=Quadro                 % Prefixo "Quadro"
+  position=top,               % Legenda acima do quadro
+  skip=6pt,                   % Espaço entre legenda e conteúdo
+  name=Quadro                 % Prefixo "Quadro"
+  }
+  
+  % Ajusta prefixo e fonte na Lista de Quadros
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand{\cftquadroaftersnum}{\space--\space}
+\makeatletter
+\renewcommand*{\l@quadro}[2]{%
+  \ifnum\c@lofdepth>0\relax
+    \ExpandArgs{c}\mem@cft@vspace@cmd{cftbeforequadroskip}{%
+      \newcommand*\cftwhatismyname{quadro}%
+      \memRTLleftskip\@nameuse{cftquadroindent}\relax
+      \memRTLrightskip\@tocrmarg
+      \parfillskip-\memRTLrightskip
+      \parindent\@nameuse{cftquadroindent}\relax
+      \@afterindenttrue
+      \interlinepenalty\@M
+      \leavevmode
+      \settowidth{\@tempdima}{\@nameuse{cftquadrofont}{\@nameuse{cftquadroname}}}%
+      \addtolength{\@tempdima}{\@nameuse{cftquadronumwidth}}%
+      \expandafter\let\expandafter\@cftbsnum\csname cftquadropresnum\endcsname
+      \expandafter\let\expandafter\@cftasnum\csname cftquadroaftersnum\endcsname
+      \expandafter\let\expandafter\@cftasnumb\csname cftquadroaftersnumb\endcsname
+      \expandafter\let\expandafter\@cftn@me\csname cftquadroname\endcsname
+      \advance\memRTLleftskip\@tempdima
+      \null\nobreak\hskip-\memRTLleftskip
+      {\@nameuse{cftquadrofont}{#1}}\nobreak
+      \@nameuse{cftquadrofillnum}{#2}%
+    }%
+  \fi
 }
+\makeatother
+
 % ========================================================================
 % CONFIGURAÇÕES DE LISTAS
 % ========================================================================

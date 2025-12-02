@@ -132,15 +132,15 @@ O referencial teórico constitui a base conceitual da pesquisa, apresentando as 
 
 Segundo \citeonline{creswell2018}, [APRESENTAR CONCEITO OU TEORIA FUNDAMENTAL]. Esta definição é complementada por \citeonline{gil2019}, que acrescenta [INFORMAÇÃO COMPLEMENTAR].
 
-A \autoref{fig:exemplo} ilustra [DESCRIÇÃO DA FIGURA], demonstrando [EXPLICAÇÃO DO QUE A FIGURA REPRESENTA].
-
 \begin{figure}[htbp]
     \centering
     \caption{Exemplo de figura no documento}
     \includegraphics[width=0.3\textwidth]{img/Logo-IFPI-Floriano-Horizontal.png}
-    \fontetabela{IFPI - Instituto Federal do Piauí.}
+    \fonte{IFPI - Instituto Federal do Piauí.}
     \label{fig:exemplo}
 \end{figure}
+
+Quando elementos visuais, como figuras, quadros ou tabelas, forem inseridos no texto, devem ser obrigatoriamente identificados e mencionados no corpo do trabalho, de modo a estabelecer uma relação clara entre a informação apresentada e sua discussão. Conforme orienta a \citeonline{ABNT_NBR14724_2011},  esses elementos devem ser citados no texto por seu número e título, garantindo uniformidade e rastreabilidade. Assim, pode-se fazer referência, por exemplo, à \autoref{fig:exemplo}, na qual se apresenta a logomarca horizontal do IFPI Campus Floriano.
 
 % ou
 % \inserirfigura{img/Logo-IFPI-Floriano-Horizontal.png}{0.3\textwidth}{Exemplo de figura no documento}{exemplo}
@@ -153,56 +153,66 @@ A \autoref{fig:exemplo} ilustra [DESCRIÇÃO DA FIGURA], demonstrando [EXPLICAÇ
 % A formatação automática do abntex2 já aplica estas regras quando se usa o ambiente citacao.
 
 \begin{citacao}
-Quando uma citação direta ultrapassa três linhas do texto original, ela deve ser apresentada em destaque, com recuo especial da margem esquerda, sem o uso de aspas, utilizando fonte menor que a do corpo do texto e espaçamento simples entre as linhas. Esta formatação diferenciada permite ao leitor identificar claramente que se trata de um trecho literalmente reproduzido de outra fonte, mantendo a integridade do pensimento do autor citado e respeitando as normas técnicas de apresentação de trabalhos acadêmicos estabelecidas pelas normas ABNT \cite{marconi2017}.
+Quando uma citação direta ultrapassa três linhas do texto original, ela deve ser apresentada em destaque, com recuo especial da margem esquerda, sem o uso de aspas, utilizando fonte menor que a do corpo do texto e espaçamento simples entre as linhas. Esta formatação diferenciada permite ao leitor identificar claramente que se trata de um trecho literalmente reproduzido de outra fonte, mantendo a integridade do pensimento do autor ciado \cite{ABNT_NBR10520_2023}.
 \end{citacao}
 
 \section{ESTUDOS RELACIONADOS}
-\label{sec:estudos-relacionados}
+\label{sec:estudos-relacionados} 
 
 Esta seção apresenta uma revisão dos principais estudos relacionados ao tema da pesquisa, evidenciando o estado da arte e identificando lacunas que justifiquem a realização do presente estudo.
 
-\citeonline{costa2023} realizou um estudo sobre [TEMA DO ESTUDO], concluindo que [PRINCIPAIS CONCLUSÕES]. Os resultados obtidos demonstraram [RESULTADOS RELEVANTES], contribuindo para [CONTRIBUIÇÃO DO ESTUDO].
+A \textbf{tabela} é uma forma não discursiva de apresentação de informações em que o dado numérico é o elemento central, organizada de modo a facilitar comparações, análises e leitura rápida dos resultados. Segundo as normas da ABNT, as tabelas devem apresentar título centralizado, estrutura aberta (sem bordas laterais ou inferiores fechadas), fonte abaixo e devem ser citadas no texto conforme sua numeração \cite{ABNT_NBR14724_2011,ABNT_NBR15287_2011,ABNT_NBR6024_2012}. Lembre-se que toda tabela, figura ou quadro inseridos no seu trabalhos dever ser citatdo no texto, como por exemplo, a \autoref{tab:estudos}, que exemplifica a formatação adequada de uma tabela.
 
-A \autoref{tab:estudos} apresenta um resumo dos principais estudos relacionados ao tema desta pesquisa.
-
-\begin{table}[htbp]
+\begin{table}[htbp] %"table" é o ambiente padrão do LaTeX para tabelas.
     \centering
-    \caption{Resumo dos principais estudos relacionados}
+    \caption{Exemplo de tabela }
     \label{tab:estudos}
-    \begin{tabular}{|p{3cm}|p{4cm}|p{6cm}|}
+    \begin{tabular}{p{4cm}cc}
+        \hline
+        \textbf{Estudo} & \textbf{Amostra} & \textbf{Métrica principal} \\ %\\ indica quebra de linha
+        \hline\hline %Linha dupla para separar o cabeçalho do conteúdo
+        Costa e Rocha (2023) & 120 respondentes & Média de adoção = 4,1 \\
+        Silva e Santos (2023) & 18 escolas analisadas & Taxa de conclusão = 87\% \\
+        Souza (2021) & 32 entrevistas & Índice de concordância = 0,74 \\
+        \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor a partir dos estudos revisados.}
+\end{table}
+
+% =============== OBSERVAÇÃO SOBRE POSICIONAMENTO DE TABELAS E QUADROS ==============
+% No ambiente table (tabela) e quadro (quadro), o LaTeX permite especificar opções de posicionamento.
+
+% \begin{table}[htbp] <- Essas letras são indicadores de posicionamento:
+
+% h	here = aqui	“coloque exatamente aqui se possível”
+% t	top = topo	“se não couber aqui, tente no topo da página”
+% b	bottom = rodapé	“ou no fim da página”
+% p	page of floats	“ou faça uma página só de tabelas/figuras”
+
+% Assim, [htbp] significa:
+
+% “Tente colocar aqui; se não der, tenta no topo; depois no rodapé; depois numa página separada.”
+% É o mais usado porque dá flexibilidade, o que evita que o LaTeX “quebre” seu layout.
+% ====================================================================================
+
+O \textbf{quadro}, diferentemente da tabela, é utilizado para apresentar dados qualitativos, como definições, características, categorias ou descrições. Ele possui estrutura fechada em todos os lados e organiza informações textuais de maneira comparativa e clara, sendo recomendado para sínteses conceituais ou classificações dentro do projeto de pesquisa \cite{ABNT_NBR14724_2011,ABNT_NBR15287_2011,ABNT_NBR6024_2012}. O \autoref{qua:estudos} exemplifica a formatação adequada de um quadro.
+
+\begin{quadro}[htbp]  %"quadro" é o ambiente personalizado do abntex2 para quadros
+    \centering
+    \caption{Exemplo de quadro}
+    \label{qua:estudos}
+    \begin{tabular}{|p{3cm}|p{4cm}|p{6cm}|} % os caracteres | indicam as bordas verticais
         \hline
         \textbf{Autor/Ano} & \textbf{Metodologia} & \textbf{Principais Resultados} \\
         \hline
-        Autor A (2023) & Pesquisa quantitativa & Resultado principal do estudo A \\
-        \hline
-        Autor B (2022) & Estudo de caso & Resultado principal do estudo B \\
-        \hline
-        Autor C (2021) & Pesquisa qualitativa & Resultado principal do estudo C \\
-        \hline
+        Autor A (2023) & Pesquisa quantitativa & Ênfase na mensuração de impacto tecnológico \\ \hline
+        Autor B (2022) & Estudo de caso & Identifica barreiras institucionais para inovação \\ \hline
+        Autor C (2021) & Pesquisa qualitativa & Discute competências desenvolvidas pelos participantes \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
-\end{table}
+\end{quadro}
 
-
-% TODO - Quador e listas de quadros
-% \begin{quadro}[htbp]  
-%     \centering
-%     \caption{Resumo dos principais estudos relacionados}
-%     \label{tab:estudos}
-%     \begin{tabular}{|p{3cm}|p{4cm}|p{6cm}|}
-%         \hline
-%         \textbf{Autor/Ano} & \textbf{Metodologia} & \textbf{Principais Resultados} \\
-%         \hline
-%         Autor A (2023) & Pesquisa quantitativa & Resultado principal do estudo A \\
-%         \hline
-%         Autor B (2022) & Estudo de caso & Resultado principal do estudo B \\
-%         \hline
-%         Autor C (2021) & Pesquisa qualitativa & Resultado principal do estudo C \\
-%         \hline
-%     \end{tabular}
-%     \fonte{Elaborado pelo autor.}
-% \end{quadro}
-
+Você pode usar a feramenta \textit{Tables Genetator}\footnote{https://www.tablesgenerator.com/} para criar tabelas e quadros.
 
 \chapter{METODOLOGIA}
 \label{chap:metodologia}
@@ -217,6 +227,14 @@ Esta pesquisa pode ser caracterizada, quanto aos seus objetivos, como [EXPLORAT�
 Quanto à abordagem, trata-se de uma pesquisa [QUALITATIVA/QUANTITATIVA/MISTA], pois [JUSTIFICAR A ABORDAGEM]. \citeonline{creswell2018} destaca que a abordagem [TIPO DE ABORDAGEM] é adequada quando [SITUAÇÕES EM QUE A ABORDAGEM É ADEQUADA].
 
 Em relação aos procedimentos técnicos, será realizada uma [PESQUISA BIBLIOGRÁFICA/ESTUDO DE CASO/PESQUISA DE CAMPO/ETC.], que, conforme \citeonline{marconi2017}, caracteriza-se por [CARACTERÍSTICAS DO PROCEDIMENTO ESCOLHIDO].
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Figura que ilustre a sua metodologia}
+    \includegraphics[width=0.9\textwidth]{img/tema do tcc.png}
+    \fonte{Adaptado de \citeonline{Moretti_ComoEscolherTemaTCC_2024}}
+    \label{fig:exemplo2}
+\end{figure}
 
 \section{POPULAÇÃO E AMOSTRA}
 \label{sec:populacao-amostra}
@@ -285,51 +303,24 @@ O orçamento sintetiza os custos estimados e faz parte dos recursos materiais, p
 \section{Recursos Financeiros}
 \label{sec:recursos-financeiros}
 
-[APRESENTAR UMA SÍNTESE DAS FONTES DE FINANCIAMENTO PREVISTAS (BOLSAS, AUXÍLIOS, CONTRAPARTIDAS INSTITUCIONAIS ETC.) E COMO OS VALORES SERÃO APLICADOS NAS DESPESAS DO PROJETO.]
+[SE HOUVER, APRESENTAR UMA SÍNTESE DAS FONTES DE FINANCIAMENTO PREVISTAS (BOLSAS, AUXÍLIOS, CONTRAPARTIDAS INSTITUCIONAIS ETC.) E COMO OS VALORES SERÃO APLICADOS NAS DESPESAS DO PROJETO.]
 
-\chapter{CRONOGRAMA}
-\label{chap:cronograma}
-
-O cronograma apresenta a distribuição temporal das atividades previstas para a realização da pesquisa. A \autoref{tab:cronograma} detalha as etapas e seus respectivos períodos de execução.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Cronograma de execução da pesquisa}
-    \label{tab:cronograma}
-    \begin{tabular}{|p{4cm}|c|c|c|c|c|c|}
-        \hline
-        \textbf{Atividades} & \textbf{Mês 1} & \textbf{Mês 2} & \textbf{Mês 3} & \textbf{Mês 4} & \textbf{Mês 5} & \textbf{Mês 6} \\
-        \hline
-        Revisão bibliográfica & X & X & & & & \\
-        \hline
-        Elaboração dos instrumentos & & X & X & & & \\
-        \hline
-        Coleta de dados & & & X & X & & \\
-        \hline
-        Análise dos dados & & & & X & X & \\
-        \hline
-        Redação do relatório & & & & & X & X \\
-        \hline
-        Revisão e entrega & & & & & & X \\
-        \hline
-    \end{tabular}
-    \fonte{Elaborado pelo autor.}
-\end{table}
+Na \autoref{tab:orcamento} estão detalhados os custos financeiros de cada item necessário para a execução da pesquisa.
 
 \begin{table}[htbp]
     \centering
     \caption{Orçamento da pesquisa}
     \label{tab:orcamento}
-    \begin{tabular}{|p{6cm}|c|c|c|}
+    \begin{tabular}{p{6cm}ccc}
         \hline
         \textbf{Item} & \textbf{Quantidade} & \textbf{Valor Unitário (R\$)} & \textbf{Valor Total (R\$)} \\
-        \hline
+        \hline\hline
         Material de escritório & - & - & 150,00 \\
-        \hline
+        % \hline
         Impressões e cópias & - & - & 100,00 \\
-        \hline
+        % \hline
         Transporte & - & - & 200,00 \\
-        \hline
+        % \hline
         Software (licenças) & - & - & 300,00 \\
         \hline
         \textbf{TOTAL} & & & \textbf{750,00} \\
@@ -337,6 +328,37 @@ O cronograma apresenta a distribuição temporal das atividades previstas para a
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
+
+\chapter{CRONOGRAMA}
+\label{chap:cronograma}
+
+O cronograma apresenta a distribuição temporal das atividades previstas para a realização da pesquisa. A \autoref{qua:cronograma} detalha as etapas e seus respectivos períodos de execução.
+
+\begin{quadro}[htbp]
+    \centering
+    \caption{Cronograma de execução da pesquisa}
+    \label{qua:cronograma}
+    \begin{tabular}{|p{6cm}|c|c|c|c|c|c|}
+        \hline
+        \textbf{Atividades} & \textbf{Jan} & \textbf{Fev} & \textbf{Mar} & \textbf{Abr} & \textbf{Mai} & \textbf{Jun} \\
+        \hline
+        Revisão bibliográfica & \checkmark & \checkmark & & & & \\
+        \hline
+        Elaboração dos instrumentos & & \checkmark & \checkmark & & & \\
+        \hline
+        Coleta de dados & & & \checkmark & \checkmark & & \\
+        \hline
+        Análise dos dados & & & & \checkmark & \checkmark & \\
+        \hline
+        Redação do relatório & & & & & \checkmark & \checkmark \\
+        \hline
+        Revisão e entrega & & & & & & \checkmark \\
+        \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
+\end{quadro}
+
+
 
 % ========================================================================
 % ELEMENTOS PÓS-TEXTUAIS
