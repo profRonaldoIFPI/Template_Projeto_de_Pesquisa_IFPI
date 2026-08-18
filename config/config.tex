@@ -19,14 +19,14 @@
 % Codificacao e fontes
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{times}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 % Idioma
 \usepackage[brazil]{babel}
 
 % Regras ABNT / referencias
-\usepackage[alf]{abntex2cite}
+\usepackage[alf,abnt-and-type=e,abnt-emphasize=bf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
 \usepackage{config/abntex-ifpi}
 
 % ========================================================================
@@ -34,7 +34,7 @@
 % ========================================================================
 \usepackage{microtype}
 \usepackage{indentfirst}
-\usepackage{color}
+\usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath,amsfonts,amssymb}
@@ -43,15 +43,15 @@
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{rotating}
-\usepackage{siunitx} % alinhamento numÃ©rico com separador decimal em vÃ­rgula
-\sisetup{
-    output-decimal-marker = {,},
-    input-decimal-markers = {,},
-    group-minimum-digits = 3,
-    group-separator = {.},
-    table-number-alignment = right
-}
-\newcolumntype{d}[1]{S[table-format=#1, input-symbols = {-}]}
+% \usepackage{siunitx} % alinhamento numérico com separador decimal em vírgula
+% \sisetup{
+%     output-decimal-marker = {,},
+%     input-decimal-markers = {,},
+%     group-minimum-digits = 3,
+%     group-separator = {.},
+%     table-number-alignment = right
+% }
+% \newcolumntype{d}[1]{S[table-format=#1, input-symbols = {-}]}
 
 % Listas, siglas e simbolos
 \usepackage{enumitem}
@@ -60,6 +60,9 @@
 
 % URLs
 \usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\do\/\do\-\do\.\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\0}
+\makeatother
 
 % ========================================================================
 % MARGENS, ESPACAMENTO E NUMERACAO
@@ -68,7 +71,7 @@
 \setulmarginsandblock{3cm}{2cm}{*}
 \checkandfixthelayout
 
-\OnehalfSpacing
+\SingleSpacing
 \setlength{\parindent}{1.25cm}
 
 \setcounter{secnumdepth}{3}
@@ -94,16 +97,6 @@
 \newcommand{\citep}[2]{\cite[p.~#2]{#1}}
 \newcommand{\citeonlinep}[2]{\citeonline[p.~#2]{#1}}
 \newcommand{\citemulti}[1]{\cite{#1}}
-
-\newcommand{\inserirfigura}[4]{%
-    \begin{figure}[htbp]
-        \centering
-        \caption{#3}
-        \includegraphics[width=#2]{#1}
-        \label{fig:#4}
-        \fontetabela{Elaborado pelo autor.}
-    \end{figure}
-}
 
 \newcommand{\fontetabela}[1]{%
     % \vspace{0.2cm}

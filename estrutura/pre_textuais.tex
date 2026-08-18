@@ -1,6 +1,6 @@
 % ========================================================================
 % ELEMENTOS PRÉ-TEXTUAIS
-% Capa, folha de rosto, listas e sumário conforme ABNT NBR 14724:2011
+% Capa, folha de rosto, listas e sumário conforme ABNT NBR 14724:2024 / NBR 15287
 % ========================================================================
 
 % ========================================================================
@@ -12,46 +12,6 @@
 % FOLHA DE ROSTO
 % ========================================================================
 \imprimirfolhaderosto*
-
-% ========================================================================
-% FOLHA DE APROVAÇÃO (OPCIONAL)
-% ========================================================================
-% Descomente as linhas abaixo se necessário incluir folha de aprovação
-% \begin{folhadeaprovacao}
-%     \begin{center}
-%         {\ABNTEXchapterfont\large\imprimirautor}
-%         
-%         \vspace*{\fill}\vspace*{\fill}
-%         
-%         {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
-%         
-%         \vspace*{\fill}
-%         
-%         \hspace{.45\textwidth}
-%         \begin{minipage}{.5\textwidth}
-%             \imprimirpreambulo
-%         \end{minipage}%
-%         
-%         \vspace*{\fill}
-%         
-%         Trabalho aprovado. \imprimirlocal, \imprimirdata:
-%         
-%         \vspace*{1cm}
-%         
-%         \assinatura{\textbf{\imprimirorientador} \\ Orientador}
-%         
-%         \assinatura{\textbf{Professor} \\ Convidado 1}
-%         
-%         \assinatura{\textbf{Professor} \\ Convidado 2}
-%         
-%         \vspace*{\fill}
-%         
-%         {\large\imprimirlocal}
-%         \par
-%         {\large\imprimirdata}
-%         \vspace*{1cm}
-%     \end{center}
-% \end{folhadeaprovacao}
 
 % ========================================================================
 % DEDICATÓRIA (OPCIONAL)
@@ -72,13 +32,9 @@
 % \begin{agradecimentos}
 %     Agradeço primeiramente a Deus, por ter me dado força e determinação para concluir este trabalho.
 %     
-%     Ao meu orientador, Prof. Dr. [Nome], pela paciência, dedicação e conhecimentos transmitidos durante todo o processo de orientação.
+%     Ao meu orientador, Prof. Me. Ronaldo Pires Borges, pela paciência, dedicação e conhecimentos transmitidos.
 %     
-%     Aos professores do Instituto Federal do Piauí -- Campus Floriano, pelos ensinamentos e contribuições para minha formação acadêmica.
-%     
-%     Aos meus familiares e amigos, pelo apoio e compreensão durante esta jornada.
-%     
-%     A todos que, direta ou indiretamente, contribuíram para a realização deste trabalho.
+%     Aos professores do Instituto Federal do Piauí -- Campus Floriano, pelas contribuições para minha formação.
 % \end{agradecimentos}
 
 % ========================================================================
@@ -97,12 +53,14 @@
 % ========================================================================
 % RESUMO EM PORTUGUÊS
 % ========================================================================
-\setlength{\absparsep}{18pt} % Ajusta espaçamento entre parágrafos do resumo
-
 \begin{resumo}
-    Este projeto de pesquisa tem como objetivo [DESCREVER O OBJETIVO PRINCIPAL DA PESQUISA]. A metodologia utilizada baseia-se em [DESCREVER A METODOLOGIA: pesquisa bibliográfica, estudo de caso, pesquisa experimental, etc.]. Como referencial teórico, serão utilizados os trabalhos de [CITAR PRINCIPAIS AUTORES DA ÁREA]. A pesquisa justifica-se pela [APRESENTAR A JUSTIFICATIVA E RELEVÂNCIA DO TEMA]. Os resultados esperados incluem [DESCREVER OS RESULTADOS ESPERADOS]. Este estudo contribuirá para [APRESENTAR A CONTRIBUIÇÃO ESPERADA PARA A ÁREA DE CONHECIMENTO]. A pesquisa será desenvolvida no período de [PERÍODO DE EXECUÇÃO] e seguirá as normas éticas estabelecidas para pesquisas acadêmicas.
-    
-    \textbf{Palavras-chave}: Palavra-chave 1. Palavra-chave 2. Palavra-chave 3. Palavra-chave 4. Palavra-chave 5.
+    \setlength{\parindent}{0pt}% Garante que não haverá recuo na primeira linha do resumo
+    Este projeto de pesquisa apresenta a proposta de investigação científica sobre [TEMA DA PESQUISA]. O objetivo geral consiste em [DESCREVER O OBJETIVO GERAL DA PESQUISA]. Metodologicamente, a pesquisa caracteriza-se como [TIPO DE PESQUISA: bibliográfica, estudo de caso, experimental], utilizando abordagens [QUALITATIVA/QUANTITATIVA] para a coleta e análise de dados. A fundamentação teórica apoia-se em estudos relevantes da área de [ÁREA DE CONHECIMENTO]. Os resultados esperados pretendem contribuir para [DESCREVER OS RESULTADOS ESPERADOS E IMPACTO SOCIAL/ACADÊMICO].
+
+    \vspace{\onelineskip}
+    \noindent
+    \textbf{Palavras-chave}: projeto de pesquisa; metodologia científica; tecnologia da informação; normalização acadêmica; investigação.
+    % ATENÇÃO PRA REGRA: As palavras-chave devem ser de três a cinco palavras, com iniciais em minúsculo, separadas por ponto e vírgula e finalizada por ponto. O mesmo vale para o abstract
 \end{resumo}
 
 % ========================================================================
@@ -110,18 +68,18 @@
 % ========================================================================
 \begin{resumo}[ABSTRACT]
     \begin{otherlanguage*}{english}
-        This research project aims to [DESCRIBE THE MAIN OBJECTIVE OF THE RESEARCH]. The methodology used is based on [DESCRIBE THE METHODOLOGY: bibliographic research, case study, experimental research, etc.]. As theoretical framework, the works of [CITE MAIN AUTHORS IN THE FIELD] will be used. The research is justified by [PRESENT THE JUSTIFICATION AND RELEVANCE OF THE THEME]. Expected results include [DESCRIBE EXPECTED RESULTS]. This study will contribute to [PRESENT THE EXPECTED CONTRIBUTION TO THE KNOWLEDGE AREA]. The research will be developed in the period of [EXECUTION PERIOD] and will follow the ethical standards established for academic research.
-        
-        \textbf{Keywords}: Keyword 1. Keyword 2. Keyword 3. Keyword 4. Keyword 5.
+        \setlength{\parindent}{0pt}% Garante que não haverá recuo na primeira linha do abstract
+        This research project presents a proposal for scientific investigation on [RESEARCH TOPIC]. The general objective is to [DESCRIBE THE GENERAL OBJECTIVE]. Methodologically, the study is characterized as [TYPE OF RESEARCH: literature review, case study, experimental], using [QUALITATIVE/QUANTITATIVE] approaches for data collection and analysis. The theoretical framework is based on relevant studies in the field of [FIELD OF KNOWLEDGE]. The expected results aim to contribute to [DESCRIBE EXPECTED RESULTS AND ACADEMIC IMPACT].
+
+        \vspace{\onelineskip}
+        \noindent
+        \textbf{Keywords}: research project; scientific methodology; information technology; academic standardization; investigation.
     \end{otherlanguage*}
 \end{resumo}
 
 % ========================================================================
 % LISTA DE ILUSTRAÇÕES
 % ========================================================================
-% LISTA DE ILUSTRACOES
-% ========================================================================
-% A lista sera gerada automaticamente se houver figuras no documento
 \pdfbookmark[0]{\listfigurename}{lof}
 \begingroup
   \makeatletter
@@ -129,12 +87,11 @@
   \makeatother
   \listoffigures*
 \endgroup
-\cleardoublepage  % quebra de página
+\cleardoublepage
 
 % ========================================================================
 % LISTA DE TABELAS
 % ========================================================================
-% A lista sera gerada automaticamente se houver tabelas no documento
 \pdfbookmark[0]{\listtablename}{lot}
 \begingroup
   \makeatletter
@@ -153,69 +110,26 @@
 %     \item[IFPI] Instituto Federal de Educação, Ciência e Tecnologia do Piauí
 %     \item[NBR] Norma Brasileira
 %     \item[PDF] Portable Document Format
-%     \item[TCC] Trabalho de Conclusão de Curso
-%     % Adicione outras siglas conforme necessário
-%     % \item[SIGLA] Significado da sigla
 % \end{siglas}
-
-% ========================================================================
-% LISTA DE SÍMBOLOS
-% ========================================================================
-% Descomente e adicione os símbolos utilizados no trabalho
-% \begin{simbolos}
-%     \item[$ \Gamma $] Letra grega Gama
-%     \item[$ \Lambda $] Lambda
-%     \item[$ \zeta $] Letra grega minúscula zeta
-%     \item[$ \in $] Pertence
-%     % Adicione outros símbolos conforme necessário
-% \end{simbolos}
 
 % ========================================================================
 % SUMÁRIO
 % ========================================================================
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
-% \cleardoublepage
+\cleardoublepage
 
 % ========================================================================
 % CONFIGURAÇÕES PARA INÍCIO DO TEXTO
 % ========================================================================
-% Configura numeração de páginas para o texto principal
-\textual
+\makeatletter
+\renewcommand{\textual}{%
+  \OnehalfSpacing
+  \pagestyle{ifpihead}
+  \aliaspagestyle{chapter}{ifpihead}
+  \nouppercaseheads
+  \bookmarksetup{startatroot}
+}
+\makeatother
 
-% ========================================================================
-% INSTRUÇÕES PARA PERSONALIZAÇÃO
-% ========================================================================
-%
-% COMO PERSONALIZAR ESTE ARQUIVO:
-%
-% 1. RESUMO: Substitua o texto de exemplo pelo resumo real do seu projeto
-%    - Máximo de 500 palavras
-%    - Deve conter: objetivo, metodologia, resultados esperados
-%    - Inclua 3-5 palavras-chave relevantes
-%
-% 2. ABSTRACT: Traduza o resumo para o inglês
-%    - Mantenha a mesma estrutura do resumo em português
-%    - Use keywords correspondentes às palavras-chave
-%
-% 3. LISTAS AUTOMÁTICAS:
-%    - Lista de figuras: gerada automaticamente quando há figuras
-%    - Lista de tabelas: gerada automaticamente quando há tabelas
-%    - Para não aparecer listas vazias, comente as linhas correspondentes
-%
-% 4. LISTA DE SIGLAS:
-%    - Adicione todas as siglas utilizadas no trabalho
-%    - Mantenha ordem alfabética
-%    - Use o formato: \item[SIGLA] Significado completo
-%
-% 5. ELEMENTOS OPCIONAIS:
-%    - Dedicatória: descomente e personalize se desejar
-%    - Agradecimentos: descomente e personalize se desejar
-%    - Epígrafe: descomente e personalize se desejar
-%    - Folha de aprovação: descomente se necessário
-%
-% 6. LISTA DE SÍMBOLOS:
-%    - Descomente se o trabalho utilizar símbolos matemáticos
-%    - Adicione os símbolos na ordem de aparição no texto
-%
-% ========================================================================
+\textual

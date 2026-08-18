@@ -1,96 +1,132 @@
-# Template LaTeX para Projetos de Pesquisa IFPI
+# Template LaTeX para Projetos de Pesquisa — IFPI
 
-Template preparado para projetos de pesquisa do Instituto Federal do Piauí (IFPI), alinhado com as normas ABNT 2023 e com personalizações institucionais em português do Brasil.
+Template em LaTeX para elaboração de Projetos de Pesquisa do **Instituto Federal do Piauí (IFPI)**, totalmente alinhado às normas ABNT vigentes (incluindo a NBR 15287 para Projetos de Pesquisa e a NBR 10520:2023 para citações) e ao *Manual de Trabalhos Acadêmicos do IFPI (2024)*.
 
-## Características
+---
 
-- **Base**: classe `abntex2` atualizada
-- **Normas atendidas**: NBR 14724, 6024, 6027, 10520, 6023, 15287 (versões vigentes)
-- **Formatação padrão**: margens 3 cm/2 cm, Times New Roman 12 pt, espaçamento 1,5
-- **Personalização**: capa, folha de rosto e comandos específicos do IFPI
-- **Pronto para uso**: estrutura completa com exemplos comentados
-- **Idioma padrão**: português do Brasil (babel `brazil`)
+📄 **Visualizar Exemplo da Saída (PDF):**  
+Para ver o resultado final formatado, acesse diretamente o modelo compilado:  
+👉 **[main.pdf](main.pdf)**
 
-## Como usar
+---
 
-### 1. Personalização dos dados
+## 📁 Estrutura Completa do Repositório
 
-Edite o arquivo `estrutura/dados.tex` e ajuste os campos:
-
-```latex
-% Dados do projeto (estrutura/dados.tex)
-\titulo{SEU TÍTULO AQUI}
-\autor{SEU NOME COMPLETO}
-\orientador{Prof. Dr. Nome do Orientador}
-\coorientador{Prof. Dr. Nome do Coorientador} % Opcional
-\curso{Nome do Curso}
-\campus{Campus IFPI}
-\local{Cidade - Estado}
-\data{Ano}
+```text
+Template_Projeto_de_Pesquisa_IFPI/
+├── main.tex                  # Arquivo principal do projeto (capítulos e seções)
+├── main.pdf                  # Modelo compilado em PDF (resultado final)
+├── referencias.bib           # Base de dados de referências bibliográficas (BibTeX)
+├── gerar_pdf.sh              # Script de compilação automática para Linux / macOS
+├── gerar_pdf.bat             # Script de compilação automática para Windows
+├── verificar_conformidade.py # Script Python para verificação de conformidade ABNT/IFPI
+├── LICENSE                   # Licença de uso do modelo
+├── README.md                 # Guia de documentação e utilização
+├── config/                   # Configurações do LaTeX e personalizações
+│   ├── config.tex            # Pacotes, formatação da classe abntex2 e metadados
+│   ├── abntex-ifpi.sty       # Pacote customizado com regras específicas do IFPI
+│   └── README.md             # Instruções sobre o diretório de configurações
+├── estrutura/                # Módulos de conteúdo e dados do trabalho
+│   ├── dados.tex             # Dados cadastrais (título, autor, orientador, campus)
+│   ├── pre_textuais.tex      # Elementos pré-textuais (cabeçalho, resumo e abstract)
+│   ├── pos_textuais.tex      # Elementos pós-textuais (referências, apêndices, anexos)
+│   └── README.md             # Orientações sobre a estrutura textual
+├── img/                      # Imagens, logotipos e figuras do trabalho
+│   ├── Logo-IFPI-Floriano-Horizontal.png
+│   ├── Logo-IFPI-Floriano-Vertical.png
+│   ├── Logo-IFPI-IF.png
+│   ├── tema do tcc.png
+│   └── README.md             # Recomendações sobre inclusão de imagens
+├── Normas/                   # Acervo de normas ABNT e manuais institucionais em PDF
+│   ├── ABNT-NBR-6023-Referencias-Bibliograficas.pdf
+│   ├── ABNT-NBR-6024-Numeracao-progressiva-das-secoes-de-um-documento.pdf
+└── Normas/                   # Acervo de normas ABNT e manuais institucionais em PDF
+    ├── ABNT-NBR-6023-Referencias-Bibliograficas.pdf
+    ├── ABNT-NBR-6024-Numeracao-progressiva-das-secoes-de-um-documento.pdf
+    ├── ABNT-NBR-6027-Sumario.pdf
+    ├── ABNT_NBR_14724_2024-1.pdf
+    ├── ABNT_NBR_15287-2011_Projeto-de-Pesquisa-1.pdf
+    ├── Abnt_nbr_10520_2023.pdf
+    ├── Manual TCC - IFPI.pdf
+    ├── NBR-15287_2025_Projeto-de-pesquisa.pdf
+    ├── Normas de apresentação tabular - IBGE - 1993.pdf
+    └── README.md             # Relação descritiva das normas incluídas
 ```
 
-Para ajustes de pacotes e de formatação geral, utilize `config/config.tex`.
+---
 
-### 2. Estrutura do documento
+## 🚀 Como Usar
 
-```
-main.tex               # Arquivo principal
-config/
-    config.tex         # Classe e configurações do documento
-    abntex-ifpi.sty    # Personalizações IFPI
-estrutura/
-    dados.tex          # Dados do projeto de pesquisa
-    pre_textuais.tex   # Elementos pré-textuais
-    pos_textuais.tex   # Elementos pós-textuais
-img/                   # Imagens do documento
-referencias.bib        # Bibliografia
-README.md              # Este arquivo
-```
+Você pode utilizar este template tanto **localmente em seu computador** (recomendado) quanto via **Overleaf**.
 
-### 3. Compilação
+### Opção 1: Uso Local (Linux, Windows ou macOS)
 
-Execute a sequência completa abaixo para gerar o PDF com referências atualizadas:
+Requer uma distribuição LaTeX instalada:
+- **Windows**: [MiKTeX](https://miktex.org/) ou [TeX Live](https://www.tug.org/texlive/)
+- **Linux**: TeX Live (`sudo apt install texlive-full` ou pacotes base + `texlive-lang-portuguese` `texlive-publishers`)
+- **macOS**: [MacTeX](https://www.tug.org/mactex/)
+
+#### Compilação Automatizada:
+O repositório inclui scripts que executam todo o fluxo de compilação (`pdflatex` + `bibtex` + `pdflatex` x2) para gerar o `main.pdf`:
+
+- **Windows**: Dê um duplo clique no arquivo `gerar_pdf.bat` ou execute no Prompt de Comando (CMD):
+  ```cmd
+  gerar_pdf.bat
+  ```
+- **Linux / macOS**: Execute no terminal:
+  ```bash
+  ./gerar_pdf.sh
+  ```
+
+Se preferir utilizar um editor (como VS Code com a extensão *LaTeX Workshop*, TeXstudio ou Texmaker), basta abrir a pasta do projeto e compilar o arquivo principal `main.tex`.
+
+---
+
+### Opção 2: Uso no Overleaf
+
+1. Baixe o repositório em formato `.zip` (**Code** > **Download ZIP** no GitHub).
+2. Acesse o [Overleaf](https://www.overleaf.com/) e clique em **New Project** > **Upload Project**.
+3. Envie o arquivo `.zip`. O Overleaf identificará automaticamente o arquivo principal `main.tex`.
+
+---
+
+## ✏️ Edição do Documento
+
+1. **Dados do Projeto (`estrutura/dados.tex`)**:  
+   Preencha o título, subtítulo, nome do autor, orientador, e-mails e vínculo institucional.
+
+2. **Corpo do Texto (`main.tex`)**:  
+   Escreva o conteúdo dos capítulos (Introdução, Referencial Teórico, Metodologia, Resultados Esperados, Recursos e Cronograma).
+
+3. **Citações e Referências (`referencias.bib`)**:  
+   Adicione suas referências em formato BibTeX.
+
+> ℹ️ **Regra ABNT NBR 10520:2023 (Citações)**:  
+> As chamadas no texto utilizam autor/organização em **minúsculas** com a primeira letra maiúscula (ex: `(Borges, 2026)` e `Organização das Nações Unidas (2026)`). Nas Referências ao final, os nomes/siglas aparecem automaticamente em **CAIXA ALTA**.
+>
+> Para instituições/organizações no `.bib`, utilize o campo `organization` sem chaves duplas e, se houver sigla, o campo `org-short`:
+> ```bibtex
+> @manual{ibge2025,
+>     organization = {Instituto Brasileiro de Geografia e Estat{\'e}stica},
+>     org-short = {IBGE},
+>     title = {Normas de Apresenta{\c c}{\~a}o Tabular},
+>     year = {2025}
+> }
+> ```
+> *Nota: Proteja caracteres acentuados em `organization` com sintaxe LaTeX (ex: `{\c c}`, `{\~a}`, `{\'e}`).*
+
+---
+
+## 🔍 Verificação de Conformidade
+
+Este template conta com um script em Python para validar a estrutura e conformidade do seu documento:
 
 ```bash
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
+python3 verificar_conformidade.py
 ```
 
-## Conteúdo do template
+---
 
-### Elementos pré-textuais
-- Capa institucional IFPI
-- Folha de rosto
-- Resumo (português) e abstract (inglês)
-- Listas automáticas: figuras, tabelas, abreviaturas, símbolos
-- Sumário automático
-
-### Elementos textuais
-- Introdução (contexto, problema, justificativa)
-- Objetivos (geral e específicos)
-- Referencial teórico e estudos relacionados
-- Metodologia (modalidade, instrumentos, participantes, ética)
-- Resultados esperados
-- Cronograma e orçamento
-
-### Elementos pós-textuais
-- Referências bibliográficas conforme ABNT 2023
-- Apêndices e anexos (opcionais)
-
-## Recursos especiais
-
-- Comando `\inserirfigura{arquivo}{largura}{legenda}{label}` para figuras com fonte padronizada.
-- Comandos `\cite{}` e `\citeonline{}` já configurados para ABNT (pacote `abntex2cite`).  
-- Ajustes de metadados PDF automáticos (`config/config.tex` + `estrutura/dados.tex`).  
-- `preview-server.js` para servir o PDF localmente (`node preview-server.js`).
-
-## Dicas rápidas
-
-- Use `estrutura/dados.tex` para atualizar rapidamente título, autores, orientadores e dados institucionais.  
-- Ajustes finos (pacotes adicionais, comandos personalizados) vão em `config/config.tex`.  
-- Mantenha imagens em `img/` e referencie com caminhos relativos (`img/arquivo.png`).  
 - Sempre recompile na ordem indicada para evitar referências quebradas.  
 - Utilize `.gitignore` fornecido para evitar versionar artefatos temporários do LaTeX.
 

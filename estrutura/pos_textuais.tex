@@ -1,6 +1,6 @@
 % ========================================================================
 % ELEMENTOS PÓS-TEXTUAIS
-% Referências, apêndices e anexos conforme ABNT NBR 14724:2011
+% Referências, apêndices e anexos conforme ABNT NBR 14724:2024 / NBR 15287
 % ========================================================================
 
 % ========================================================================
@@ -8,7 +8,7 @@
 % ========================================================================
 \postextual
 
-% Configura o título das referências
+% Configura o título e imprime a bibliografia
 \bibliography{referencias}
 
 % ========================================================================
@@ -20,12 +20,11 @@
 % ========================================================================
 % APÊNDICES (OPCIONAL)
 % ========================================================================
-% Descomente e personalize se houver apêndices
-% Os apêndices são textos elaborados pelo próprio autor
-
+% Descomente e personalize se houver apêndices (documentos produzidos pelo próprio autor)
+% \quebrapagina
 % \begin{apendicesenv}
-%     % Imprime uma página indicando o início dos apêndices
-%     \partapendices
+%     % Imprime uma página indicando o início dos apêndices (opcional)
+%     % \partapendices
 %     
 %     % ========================================================================
 %     % APÊNDICE A - EXEMPLO DE APÊNDICE
@@ -33,19 +32,25 @@
 %     \chapter{TÍTULO DO PRIMEIRO APÊNDICE}
 %     \label{apendice:primeiro}
 %     
-%     Este é um exemplo de apêndice. Os apêndices são textos ou documentos elaborados pelo próprio autor, a fim de complementar sua argumentação, sem prejuízo da unidade nuclear do trabalho.
+%     Este é um exemplo de apêndice. Os apêndices são textos ou documentos elaborados pelo próprio autor, a fim de complementar sua argumentação.
 %     
 %     Exemplos de conteúdo para apêndices:
 %     \begin{itemize}
 %         \item Questionários utilizados na pesquisa
 %         \item Roteiros de entrevistas
 %         \item Códigos de programas desenvolvidos
-%         \item Cálculos detalhados
 %         \item Tabelas extensas com dados brutos
-%         \item Figuras complementares
 %     \end{itemize}
-%     
-%     % ========================================================================
-%     % APÊNDICE B - EXEMPLO DE QUESTIONÁRIO
-%     % ========================================================================
-%     \chapter{QUESTIONÁRIO APLICADO NA PESQUISA}
+% \end{apendicesenv}
+
+% ========================================================================
+% ANEXOS (OPCIONAL)
+% ========================================================================
+% Descomente e personalize se houver anexos (documentos não produzidos pelo autor)
+% \quebrapagina
+% \begin{anexosenv}
+%     % \partanexos
+%     \chapter{TÍTULO DO PRIMEIRO ANEXO}
+%     \label{anexo:primeiro}
+%     Texto do anexo aqui.
+% \end{anexosenv}

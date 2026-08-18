@@ -28,6 +28,7 @@
 \RequirePackage{newfloat}           % Para definir ambiente 'quadro' como float
 \RequirePackage{float}              % Ferramentas adicionais para floats
 \RequirePackage{chngcntr}           % Controle de contadores
+\RequirePackage{expl3}              % Para manipulação de strings via expl3 (citações)
 
 % ========================================================================
 % DEFINIÇÃO DE CORES INSTITUCIONAIS IFPI
@@ -56,28 +57,19 @@
 % Indentação de parágrafos
 \setlength{\parindent}{1.25cm}
 
-% ========================================================================
-% CONFIGURAÇÕES DE FONTES CONFORME NBR 14724:2011
-% ========================================================================
-
-% Fonte padrão: 12pt para todo o texto
-\renewcommand{\normalsize}{\fontsize{12pt}{18pt}\selectfont}
-
-% Fonte 10pt para elementos específicos
-\renewcommand{\scriptsize}{\fontsize{10pt}{12pt}\selectfont}
+% Configurações de fontes conforme NBR 14724:2011
+% A classe abntex2/memoir com opção [12pt] já define \normalsize como 12pt.
 
 % Configurar citações longas (mais de 3 linhas) com fonte 10pt e recuo de 4 cm
 \renewenvironment{citacao}{%
+    \par
     \SingleSpacing% espaçamento simples conforme ABNT
-    \footnotesize% fonte menor (10pt)
+    \fontsize{10pt}{12pt}\selectfont% fonte menor (10pt)
     \begin{adjustwidth}{4cm}{0cm}% recuo de 4 cm à esquerda, 0 cm à direita
 }{%
     \end{adjustwidth}%
+    \par
 }
-
-% Espaçamento simples nos ambientes de resumo (Português) e abstract (Inglês)
-% O ambiente 'resumo' do abntex2 aceita opcional [Abstract] para a versão em inglês
-\AtBeginEnvironment{resumo}{\SingleSpacing}
 
 % Configurar notas de rodapé com fonte 10pt
 \renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
@@ -113,6 +105,46 @@
 \newcommand{\@grau}{}
 
 % ========================================================================
+% COMANDOS NOVOS PARA ARTIGO TCC
+% ========================================================================
+
+% Comando para definir o subtítulo
+\newcommand{\subtitulo}[1]{\def\@subtitulo{#1}}
+\newcommand{\@subtitulo}{}
+
+% Comando para e-mail do autor
+\newcommand{\emailautor}[1]{\def\@emailautor{#1}}
+\newcommand{\@emailautor}{}
+\newcommand{\vinculoautor}[1]{\def\@vinculoautor{#1}}
+\newcommand{\@vinculoautor}{}
+
+% Comandos para e-mail e vínculo do orientador
+\newcommand{\emailorientador}[1]{\def\@emailorientador{#1}}
+\newcommand{\@emailorientador}{}
+\newcommand{\vinculoorientador}[1]{\def\@vinculoorientador{#1}}
+\newcommand{\@vinculoorientador}{}
+
+% Comandos para e-mail e vínculo do coorientador
+\newcommand{\emailcoorientador}[1]{\def\@emailcoorientador{#1}}
+\newcommand{\@emailcoorientador}{}
+\newcommand{\vinculocoorientador}[1]{\def\@vinculocoorientador{#1}}
+\newcommand{\@vinculocoorientador}{}
+
+\providecommand{\@orientador}{}
+\providecommand{\@coorientador}{}
+
+% Comando para data de aprovação
+\newcommand{\dataaprovacao}[1]{\def\@dataaprovacao{#1}}
+\newcommand{\@dataaprovacao}{}
+\newcommand{\imprimirdataaprovacao}{\@dataaprovacao}
+
+% Palavras-chave em portugues e ingles
+\newcommand{\palavraschave}[1]{\def\@palavraschave{#1}}
+\newcommand{\@palavraschave}{}
+\newcommand{\keywords}[1]{\def\@keywords{#1}}
+\newcommand{\@keywords}{}
+
+% ========================================================================
 % PERSONALIZAÇÃO DA CAPA
 % ========================================================================
 
@@ -143,7 +175,7 @@
         \vfill
         
         % Nome do autor
-        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirautor}}
+        {\sffamily\normalsize\MakeUppercase{\imprimirautor}}
         
         \vfill
         
@@ -162,19 +194,78 @@
 }
 
 % ========================================================================
-% PERSONALIZAÇÃO DA FOLHA DE ROSTO
+% PERSONALIZAÇÃO DA FOLHA DE ROSTO E CABEÇALHO DO ARTIGO
 % ========================================================================
 
 \makeatletter
+
+% Auxiliar para verificar se uma macro está vazia de forma robusta (independente de ser \long ou não)
+\newcommand{\ifvazia}[3]{%
+  \if\relax\detokenize\expandafter{#1}\relax
+    #2%
+  \else
+    #3%
+  \fi
+}
+
+% Cabeçalho do Artigo (impresso após a folha de rosto)
+\newcommand{\imprimircabecalhoartigo}{
+    \begin{center}
+        \vspace*{2cm}
+        {\sffamily\bfseries\normalsize\MakeUppercase{\imprimirtitulo}}
+        
+        \ifvazia{\@subtitulo}{}{%
+            {\sffamily\bfseries\normalsize\MakeUppercase{: \@subtitulo}}%
+        }%
+        
+        \ifvazia{\imprimirtituloestrangeiro}{}{%
+            \vspace{0.3cm}
+            \par{\normalfont\itshape\normalsize\imprimirtituloestrangeiro}%
+        }%
+        
+        \vspace{1.5cm}
+        
+        \begin{flushright}
+            {\sffamily\normalsize\imprimirautor\footnote{\ifvazia{\@vinculoautor}{}{\@vinculoautor. }E-mail: \@emailautor}}
+            
+            \ifvazia{\imprimirorientador}{}{%
+                {\sffamily\normalsize\imprimirorientador\footnote{\@vinculoorientador. E-mail: \@emailorientador}}%
+            }%
+            
+            \ifvazia{\imprimircoorientador}{}{%
+                {\sffamily\normalsize\imprimircoorientador\footnote{\@vinculocoorientador. E-mail: \@emailcoorientador}}%
+            }%
+        \end{flushright}
+        
+        \vspace{1cm}
+    \end{center}
+}
+
+% Redefinição de resumo para artigo (com título centralizado e espaçamento simples 1,0 escopado)
+\renewenvironment{resumo}[1][\resumoname]{%
+   \begin{center}\sffamily\bfseries\normalsize\MakeUppercase{#1}\end{center}
+   \vspace{\onelineskip}
+   \begin{SingleSpace}
+   \setlength{\parindent}{0pt}% Garante que não haverá recuo na primeira linha do resumo
+}{%
+   \par
+   \end{SingleSpace}
+   \vspace{\onelineskip}
+}
+
+% Redefinição da folha de rosto
 \renewcommand{\folhaderostocontent}{
     \begin{center}
         % Nome do autor
-        {\ABNTEXchapterfont\normalsize\MakeUppercase{\imprimirautor}}
+        {\sffamily\normalsize\MakeUppercase{\imprimirautor}}
         
         \vspace*{\fill}
         
         % Título
         {\ABNTEXchapterfont\bfseries\normalsize\MakeUppercase{\imprimirtitulo}}
+        \ifx\@subtitulo\@empty\else
+            {\ABNTEXchapterfont\bfseries\normalsize\MakeUppercase{: \@subtitulo}}
+        \fi
         
         \vspace*{\fill}
         
@@ -190,12 +281,12 @@
                     Área de concentração: \@areaconcentracao
                 \fi
                 
-                \ifx\imprimirorientador\empty\else
+                \ifvazia{\imprimirorientador}{}{%
                     \vspace{0.5cm}
                     Orientador: \imprimirorientador
-                \fi
+                }%
                 
-                \abntex@ifnotempty{\imprimircoorientador}{%
+                \ifvazia{\imprimircoorientador}{}{%
                     \vspace{0.5cm}
                     Coorientador: \imprimircoorientador
                 }%
@@ -253,36 +344,56 @@
 }
 \makeatother
 
+% Retorna autor formatado para citações entre parênteses (substituindo vírgulas e "e" por ponto e vírgula ";")
 \makeatletter
+\ExplSyntaxOn
+\cs_new:Npn \abntifpi_format_author:n #1 {
+  \cs_if_exist:cTF {IFPI@EXPL@#1} {
+    \tl_set:Nx \l_tmpa_tl { \use:c {IFPI@EXPL@#1} }
+    \tl_replace_all:Nnn \l_tmpa_tl { ~e~ } { ;~ }
+    \tl_replace_all:Nnn \l_tmpa_tl { ~and~ } { ;~ }
+    \tl_replace_all:Nnn \l_tmpa_tl { ,~ } { ;~ }
+    \tl_use:N \l_tmpa_tl
+  }{
+    \citeauthor{#1}
+  }
+}
+
+\newcommand{\ABNTIFPI@AuthorExplFormatted}[1]{%
+  \abntifpi_format_author:n {#1}%
+}
+\ExplSyntaxOff
+\AtBeginDocument{
 % \cite opcionalmente aceita página/nota em #1, e chaves em #2 (lista separada por vírgulas)
-\renewcommand{\cite}[2][]{%
+\DeclareRobustCommand{\cite}[2][]{%
   \begingroup
     \def\abntifpi@opt{#1}% opcional: página/nota (ex.: p.~10)
     \def\abntifpi@list{#2}% lista de chaves
-    \abntifpi@cite@split\abntifpi@list,\@nil
+    (%
+    \expandafter\abntifpi@cite@split\abntifpi@list,\@nil
+    \if\relax\expandafter\detokenize\expandafter{\abntifpi@opt}\relax\else
+      , \abntifpi@opt
+    \fi
+    )%
   \endgroup
+}
 }
 
 % Divide lista de chaves por vírgula e insere separador "; "
 \def\abntifpi@cite@split#1,#2\@nil{%
-  \abntifpi@cite@one{#1}{\abntifpi@opt}%
+  \abntifpi@cite@one{#1}%
   \ifx\relax#2\relax
   \else
-    ;\space \abntifpi@cite@split#2\@nil
+    ; \abntifpi@cite@split#2\@nil
   \fi
 }
 
-% Citação individual no formato (Autor, ano[, opcional]) usando forma EXPL e \citeyear
-\def\abntifpi@cite@one#1#2{%
+% Citação individual no formato Autor, ano usando forma EXPL formatada e \citeyear
+\def\abntifpi@cite@one#1{%
   \begingroup
-    \def\abntifpi@a{\ABNTIFPI@AuthorExpl{#1}}% autor com capitalização correta (não CAIXA ALTA)
+    \def\abntifpi@a{\ABNTIFPI@AuthorExplFormatted{#1}}% autor com ponto e vírgula (formato parênteses)
     \def\abntifpi@y{\citeyear{#1}}% ano
-    % Testa argumento opcional vazio após expansão
-    \if\relax\expandafter\detokenize\expandafter{#2}\relax
-      (\abntifpi@a, \abntifpi@y)%
-    \else
-      (\abntifpi@a, \abntifpi@y, #2)%
-    \fi
+    \abntifpi@a, \abntifpi@y
   \endgroup
 }
 
@@ -301,9 +412,8 @@
 }
 \makeatother
 
-% Configurações para referências NBR 6023:2023
 \renewcommand{\bibsection}{%
-    \chapter*{\bibname}
+    \chapter*{\centering\bibname}
     \bibmark
     \ifnobibintoc\else
         \phantomsection
@@ -460,17 +570,111 @@
 \renewcommand{\ABNTEXchapterfont}{\bfseries}
 \renewcommand{\ABNTEXchapterfontsize}{\normalsize}
 
-% Configuração de títulos de seções
-\renewcommand{\ABNTEXsectionfont}{\bfseries}
+% Configuração de títulos de seções (Primárias: Caixa Alta, Negrito)
+\renewcommand{\ABNTEXsectionfont}{\bfseries\MakeUppercase}
 \renewcommand{\ABNTEXsectionfontsize}{\normalsize}
 
-% Configuração de títulos de subseções
-\renewcommand{\ABNTEXsubsectionfont}{\bfseries}
+% Configuração de títulos de subseções (Secundárias: Caixa Alta, Sem Negrito)
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont\MakeUppercase}
 \renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
 
-% Configuração de títulos de subsubseções
+% Configuração de títulos de subsubseções (Terciárias: Caixa Baixa, Negrito)
 \renewcommand{\ABNTEXsubsubsectionfont}{\bfseries}
 \renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+% Configuração de títulos de seções quaternárias (Quaternárias: Caixa Baixa, Sem Negrito)
+\setparaheadstyle{\normalfont\normalsize}
+
+% Configuração de títulos de seções quinárias (Quinárias: Caixa Baixa, Itálico)
+\setsubparaheadstyle{\itshape\normalsize}
+
+% Forçar automaticamente a capitalização correta para as seções na compilação
+\usepackage{expl3}
+\ExplSyntaxOn
+\let\origsection\section
+\let\origsubsection\subsection
+\let\origsubsubsection\subsubsection
+\let\origparagraph\paragraph
+\let\origsubparagraph\subparagraph
+
+\NewDocumentCommand{\abntifpiUppercase}{m}{
+  \text_uppercase:n {#1}
+}
+\NewDocumentCommand{\abntifpiSentencecase}{m}{
+  \text_titlecase_first:n { \text_lowercase:n {#1} }
+}
+
+\RenewDocumentCommand{\section}{s o m}{
+  \IfBooleanTF{#1}{
+    \origsection*{\abntifpiUppercase{#3}}
+  }{
+    \IfValueTF{#2}{
+      \origsection[\abntifpiUppercase{#2}]{\abntifpiUppercase{#3}}
+    }{
+      \origsection{\abntifpiUppercase{#3}}
+    }
+  }
+}
+
+\RenewDocumentCommand{\subsection}{s o m}{
+  \IfBooleanTF{#1}{
+    \origsubsection*{\abntifpiUppercase{#3}}
+  }{
+    \IfValueTF{#2}{
+      \origsubsection[\abntifpiUppercase{#2}]{\abntifpiUppercase{#3}}
+    }{
+      \origsubsection{\abntifpiUppercase{#3}}
+    }
+  }
+}
+
+\RenewDocumentCommand{\subsubsection}{s o m}{
+  \IfBooleanTF{#1}{
+    \origsubsubsection*{\abntifpiSentencecase{#3}}
+  }{
+    \IfValueTF{#2}{
+      \origsubsubsection[\abntifpiSentencecase{#2}]{\abntifpiSentencecase{#3}}
+    }{
+      \origsubsubsection{\abntifpiSentencecase{#3}}
+    }
+  }
+}
+
+\RenewDocumentCommand{\paragraph}{s o m}{
+  \IfBooleanTF{#1}{
+    \origparagraph*{\abntifpiSentencecase{#3}}
+  }{
+    \IfValueTF{#2}{
+      \origparagraph[\abntifpiSentencecase{#2}]{\abntifpiSentencecase{#3}}
+    }{
+      \origparagraph{\abntifpiSentencecase{#3}}
+    }
+  }
+}
+
+\RenewDocumentCommand{\subparagraph}{s o m}{
+  \IfBooleanTF{#1}{
+    \origsubparagraph*{\abntifpiSentencecase{#3}}
+  }{
+    \IfValueTF{#2}{
+      \origsubparagraph[\abntifpiSentencecase{#2}]{\abntifpiSentencecase{#3}}
+    }{
+      \origsubparagraph{\abntifpiSentencecase{#3}}
+    }
+  }
+}
+\ExplSyntaxOff
+
+% Evitar avisos de tokens não permitidos em strings de PDF pelo hyperref
+\pdfstringdefDisableCommands{
+  \DeclareRobustCommand{\abntifpiUppercase}[1]{#1}
+  \DeclareRobustCommand{\abntifpiSentencecase}[1]{#1}
+  \DeclareRobustCommand{\sigla}[1]{#1}
+}
+
+% Atalho para manter siglas/acrônimos sempre em maiúsculas (protegidas contra lowercase automático)
+\newcommand{\sigla}[1]{\MakeUppercase{#1}}
+
 
 % Nomes principais em caixa alta e negrito
 \addto\captionsbrazil{%
@@ -510,6 +714,7 @@
 % (sem linha de rodapé)
 
 \renewcommand{\textual}{%
+    \OnehalfSpacing
     \pagestyle{ifpihead}
     \aliaspagestyle{chapter}{ifpihead}
     \nouppercaseheads
@@ -546,5 +751,13 @@
 % Configuração de espaçamento antes e depois de títulos
 \setlength{\beforechapskip}{0pt}
 \setlength{\afterchapskip}{18pt}
+% Configuração de espaçamento e alinhamento das referências (NBR 6023 / ABNT)
+\makeatletter
+\g@addto@macro\thebibliography{%
+  \raggedright
+  \setlength{\bibitemsep}{\baselineskip}% Espaço de 1 linha simples entre os registros
+  \setlength{\parsep}{0pt}%
+}
+\makeatother
 
 \endinput
