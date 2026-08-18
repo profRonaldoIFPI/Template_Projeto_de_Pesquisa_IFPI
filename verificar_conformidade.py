@@ -187,11 +187,27 @@ def run_audits():
     })
 
     # --------------------------------------------------------------------------
-    # 11. Compilação do PDF
+    # 11. Referências em Página Separada (Elemento Pós-textual)
+    # --------------------------------------------------------------------------
+    ref_sep_ok = (
+        "\\quebrapagina" in pos_textuais or
+        "\\cleardoublepage" in pos_textuais or
+        "\\clearpage" in pos_textuais or
+        "\\cleardoublepage" in config_sty
+    )
+    results.append({
+        "num": 11,
+        "title": "Referências em Página Separada (Elemento Pós-textual)",
+        "status": ref_sep_ok,
+        "msg": "Referências configuradas para iniciar obrigatoriamente em uma página separada." if ref_sep_ok else "As referências (elemento pós-textual) devem obrigatoriamente iniciar em uma página separada."
+    })
+
+    # --------------------------------------------------------------------------
+    # 12. Compilação do PDF
     # --------------------------------------------------------------------------
     pdf_exists = os.path.exists("projeto_de_pesquisa.pdf")
     results.append({
-        "num": 11,
+        "num": 12,
         "title": "Arquivo PDF Gerado (projeto_de_pesquisa.pdf)",
         "status": pdf_exists,
         "msg": "PDF gerado com sucesso." if pdf_exists else "Execute o script gerar_pdf.sh para compilar o documento LaTeX."
