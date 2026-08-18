@@ -6,7 +6,45 @@ Template em LaTeX para elaboração de Projetos de Pesquisa do **Instituto Feder
 
 📄 **Visualizar Exemplo da Saída (PDF):**  
 Para ver o resultado final formatado, acesse diretamente o modelo compilado:  
-👉 **[main.pdf](main.pdf)**
+👉 **[projeto_de_pesquisa.pdf](projeto_de_pesquisa.pdf)**
+
+---
+
+## 📋 Estrutura dos Elementos do Projeto de Pesquisa
+
+Conforme a norma **ABNT NBR 15287 (Projeto de Pesquisa)** e o **Manual de Normalização de Trabalhos Acadêmicos do IFPI (2024)**, o Projeto de Pesquisa organiza-se na seguinte estrutura obrigatória e opcional:
+
+```text
+ESTRUTURA DO PROJETO DE PESQUISA (NBR 15287 / MANUAL IFPI):
+├── 1. ELEMENTOS PRÉ-TEXTUAIS
+│   ├── Capa (Obrigatório)
+│   ├── Folha de Rosto (Obrigatório)
+│   ├── (SEM Resumo / Abstract — Ver Nota Normativa abaixo)
+│   ├── Lista de Ilustrações (Opcional - figuras, gráficos, fluxogramas)
+│   ├── Lista de Quadros (Opcional - dados qualitativos com moldura fechada)
+│   ├── Lista de Tabelas (Opcional - dados estatísticos/numéricos com bordas abertas IBGE)
+│   ├── Lista de Abreviaturas e Siglas / Símbolos (Opcional)
+│   └── Sumário (Obrigatório)
+├── 2. ELEMENTOS TEXTUAIS
+│   ├── Capítulo 1: Introdução (Problema de Pesquisa, Hipóteses, Objetivos, Justificativa)
+│   ├── Capítulo 2: Referencial Teórico (Fundamentação Teórica, Estudos Relacionados)
+│   ├── Capítulo 3: Metodologia (Caracterização, População/Amostra, Coleta, Análise, Ética)
+│   ├── Capítulo 4: Resultados Esperados (Impactos científicos, sociais e entregáveis)
+│   ├── Capítulo 5: Recursos (Humanos, Materiais e Orçamento estimado)
+│   └── Capítulo 6: Cronograma de Execução (Mapeamento temporal das atividades)
+└── 3. ELEMENTOS PÓS-TEXTUAIS
+    ├── Referências (Obrigatório — ABNT NBR 6023 / NBR 10520:2023)
+    ├── Apêndices (Opcional — documentos elaborados pelo próprio autor)
+    └── Anexos (Opcional — documentos de terceiros)
+```
+
+> ℹ️ **Nota Normativa: Por que o Projeto de Pesquisa NÃO tem Resumo nem Abstract?**  
+> De acordo com a **ABNT NBR 15287:2011/2025** e o **Manual de Trabalhos Acadêmicos do IFPI (2024, Capítulo 7)**, o Projeto de Pesquisa é a especificação e o planejamento de um empreendimento científico que **será realizado**.  
+> Como a pesquisa ainda não foi executada, **não existem resultados consolidados nem conclusões finais** a serem sintetizados em um resumo informativo pré-textual. Portanto, o Projeto de Pesquisa **não possui Resumo nem Abstract** (Resumo em língua estrangeira), seguindo da Folha de Rosto diretamente para as Listas pré-textuais e o Sumário.
+
+> 📐 **Regra de Paginação das Listas Pré-textuais (ABNT NBR 14724:2024 & IFPI)**:  
+> - Se o trabalho apresentar poucos elementos ($\le 5$ de cada tipo), estes podem ser reunidos em uma **LISTA DE ILUSTRAÇÕES** mantendo a designação original. Havendo mais de 5 elementos do mesmo tipo (ou seguindo o padrão prático do IFPI), recomenda-se a criação de listas próprias (**LISTA DE ILUSTRAÇÕES**, **LISTA DE QUADROS** e **LISTA DE TABELAS**).  
+> - Todos os elementos pré-textuais (com exceção do verso da folha de rosto) devem iniciar obrigatoriamente no anverso (frente) de uma **folha separada** (`\cleardoublepage`).
 
 ---
 
@@ -14,8 +52,8 @@ Para ver o resultado final formatado, acesse diretamente o modelo compilado:
 
 ```text
 Template_Projeto_de_Pesquisa_IFPI/
-├── main.tex                  # Arquivo principal do projeto (capítulos e seções)
-├── main.pdf                  # Modelo compilado em PDF (resultado final)
+├── projeto_de_pesquisa.tex   # Arquivo principal do projeto (capítulos e seções)
+├── projeto_de_pesquisa.pdf   # Modelo compilado em PDF (resultado final)
 ├── referencias.bib           # Base de dados de referências bibliográficas (BibTeX)
 ├── gerar_pdf.sh              # Script de compilação automática para Linux / macOS
 ├── gerar_pdf.bat             # Script de compilação automática para Windows
@@ -28,7 +66,7 @@ Template_Projeto_de_Pesquisa_IFPI/
 │   └── README.md             # Instruções sobre o diretório de configurações
 ├── estrutura/                # Módulos de conteúdo e dados do trabalho
 │   ├── dados.tex             # Dados cadastrais (título, autor, orientador, campus)
-│   ├── pre_textuais.tex      # Elementos pré-textuais (cabeçalho, resumo e abstract)
+│   ├── pre_textuais.tex      # Elementos pré-textuais (cabeçalho, listas, sumário)
 │   ├── pos_textuais.tex      # Elementos pós-textuais (referências, apêndices, anexos)
 │   └── README.md             # Orientações sobre a estrutura textual
 ├── img/                      # Imagens, logotipos e figuras do trabalho
@@ -37,9 +75,6 @@ Template_Projeto_de_Pesquisa_IFPI/
 │   ├── Logo-IFPI-IF.png
 │   ├── tema do tcc.png
 │   └── README.md             # Recomendações sobre inclusão de imagens
-├── Normas/                   # Acervo de normas ABNT e manuais institucionais em PDF
-│   ├── ABNT-NBR-6023-Referencias-Bibliograficas.pdf
-│   ├── ABNT-NBR-6024-Numeracao-progressiva-das-secoes-de-um-documento.pdf
 └── Normas/                   # Acervo de normas ABNT e manuais institucionais em PDF
     ├── ABNT-NBR-6023-Referencias-Bibliograficas.pdf
     ├── ABNT-NBR-6024-Numeracao-progressiva-das-secoes-de-um-documento.pdf
@@ -67,7 +102,7 @@ Requer uma distribuição LaTeX instalada:
 - **macOS**: [MacTeX](https://www.tug.org/mactex/)
 
 #### Compilação Automatizada:
-O repositório inclui scripts que executam todo o fluxo de compilação (`pdflatex` + `bibtex` + `pdflatex` x2) para gerar o `main.pdf`:
+O repositório inclui scripts que executam todo o fluxo de compilação (`pdflatex` + `bibtex` + `pdflatex` x2) para gerar o `projeto_de_pesquisa.pdf`:
 
 - **Windows**: Dê um duplo clique no arquivo `gerar_pdf.bat` ou execute no Prompt de Comando (CMD):
   ```cmd
@@ -78,7 +113,7 @@ O repositório inclui scripts que executam todo o fluxo de compilação (`pdflat
   ./gerar_pdf.sh
   ```
 
-Se preferir utilizar um editor (como VS Code com a extensão *LaTeX Workshop*, TeXstudio ou Texmaker), basta abrir a pasta do projeto e compilar o arquivo principal `main.tex`.
+Se preferir utilizar um editor (como VS Code com a extensão *LaTeX Workshop*, TeXstudio ou Texmaker), basta abrir a pasta do projeto e compilar o arquivo principal `projeto_de_pesquisa.tex`.
 
 ---
 
@@ -86,7 +121,7 @@ Se preferir utilizar um editor (como VS Code com a extensão *LaTeX Workshop*, T
 
 1. Baixe o repositório em formato `.zip` (**Code** > **Download ZIP** no GitHub).
 2. Acesse o [Overleaf](https://www.overleaf.com/) e clique em **New Project** > **Upload Project**.
-3. Envie o arquivo `.zip`. O Overleaf identificará automaticamente o arquivo principal `main.tex`.
+3. Envie o arquivo `.zip`. O Overleaf identificará automaticamente o arquivo principal `projeto_de_pesquisa.tex`.
 
 ---
 
@@ -95,7 +130,7 @@ Se preferir utilizar um editor (como VS Code com a extensão *LaTeX Workshop*, T
 1. **Dados do Projeto (`estrutura/dados.tex`)**:  
    Preencha o título, subtítulo, nome do autor, orientador, e-mails e vínculo institucional.
 
-2. **Corpo do Texto (`main.tex`)**:  
+2. **Corpo do Texto (`projeto_de_pesquisa.tex`)**:  
    Escreva o conteúdo dos capítulos (Introdução, Referencial Teórico, Metodologia, Resultados Esperados, Recursos e Cronograma).
 
 3. **Citações e Referências (`referencias.bib`)**:  

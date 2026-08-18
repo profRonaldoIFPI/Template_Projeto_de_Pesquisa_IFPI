@@ -1,84 +1,39 @@
 % ========================================================================
 % ELEMENTOS PRÉ-TEXTUAIS
-% Capa, folha de rosto, listas e sumário conforme ABNT NBR 14724:2024 / NBR 15287
+% Capa, folha de rosto, listas e sumário conforme ABNT NBR 15287 e Manual IFPI
 % ========================================================================
 
 % ========================================================================
-% CAPA
+% CAPA (OBRIGATÓRIO)
 % ========================================================================
 \imprimircapa
 
 % ========================================================================
-% FOLHA DE ROSTO
+% FOLHA DE ROSTO (OBRIGATÓRIO)
 % ========================================================================
 \imprimirfolhaderosto*
 
 % ========================================================================
-% DEDICATÓRIA (OPCIONAL)
+% NOTA NORMATIVA (ABNT NBR 15287 / MANUAL DO IFPI 2024):
+% Em Projetos de Pesquisa NÃO SE ESCREVE Resumo nem Abstract (resumo em língua
+% estrangeira). De acordo com a NBR 15287 e o Manual do IFPI, o projeto de
+% pesquisa é o planejamento de uma investigação futura. Como o trabalho ainda
+% não foi executado, não existem resultados consolidados a serem sintetizados.
 % ========================================================================
-% Descomente e personalize se desejar incluir dedicatória
-% \begin{dedicatoria}
-%     \vspace*{\fill}
-%     \centering
-%     \noindent
-%     \textit{Dedico este trabalho aos meus pais, \\
-%     pelo apoio incondicional em todos os momentos.} \vspace*{\fill}
-% \end{dedicatoria}
 
 % ========================================================================
-% AGRADECIMENTOS (OPCIONAL)
+% ORIENTAÇÕES ABNT NBR 14724:2024 E MANUAL IFPI PARA LISTAS PRÉ-TEXTUAIS:
+% 1. "Ilustração" engloba figuras, imagens, gráficos, fluxogramas, mapas e quadros.
+% 2. Poucos elementos (<= 5 de cada tipo): podem ser reunidos em LISTA DE ILUSTRAÇÕES.
+% 3. Muitos elementos (> 5 de um tipo) ou Padrão Estrutural Prático do IFPI:
+%    - LISTA DE ILUSTRAÇÕES: Figuras, imagens, gráficos e fluxogramas.
+%    - LISTA DE QUADROS: Dados qualitativos/conceituais com moldura fechada.
+%    - LISTA DE TABELAS: Dados estatísticos/numéricos com laterais abertas (IBGE).
+% 4. Cada lista deve iniciar obrigatoriamente no anverso (frente) de folha separada.
 % ========================================================================
-% Descomente e personalize se desejar incluir agradecimentos
-% \begin{agradecimentos}
-%     Agradeço primeiramente a Deus, por ter me dado força e determinação para concluir este trabalho.
-%     
-%     Ao meu orientador, Prof. Me. Ronaldo Pires Borges, pela paciência, dedicação e conhecimentos transmitidos.
-%     
-%     Aos professores do Instituto Federal do Piauí -- Campus Floriano, pelas contribuições para minha formação.
-% \end{agradecimentos}
 
 % ========================================================================
-% EPÍGRAFE (OPCIONAL)
-% ========================================================================
-% Descomente e personalize se desejar incluir epígrafe
-% \begin{epigrafe}
-%     \vspace*{\fill}
-%     \begin{flushright}
-%         \textit{``A educação é a arma mais poderosa \\
-%         que você pode usar para mudar o mundo.''\\
-%         (Nelson Mandela)}
-%     \end{flushright}
-% \end{epigrafe}
-
-% ========================================================================
-% RESUMO EM PORTUGUÊS
-% ========================================================================
-\begin{resumo}
-    \setlength{\parindent}{0pt}% Garante que não haverá recuo na primeira linha do resumo
-    Este projeto de pesquisa apresenta a proposta de investigação científica sobre [TEMA DA PESQUISA]. O objetivo geral consiste em [DESCREVER O OBJETIVO GERAL DA PESQUISA]. Metodologicamente, a pesquisa caracteriza-se como [TIPO DE PESQUISA: bibliográfica, estudo de caso, experimental], utilizando abordagens [QUALITATIVA/QUANTITATIVA] para a coleta e análise de dados. A fundamentação teórica apoia-se em estudos relevantes da área de [ÁREA DE CONHECIMENTO]. Os resultados esperados pretendem contribuir para [DESCREVER OS RESULTADOS ESPERADOS E IMPACTO SOCIAL/ACADÊMICO].
-
-    \vspace{\onelineskip}
-    \noindent
-    \textbf{Palavras-chave}: projeto de pesquisa; metodologia científica; tecnologia da informação; normalização acadêmica; investigação.
-    % ATENÇÃO PRA REGRA: As palavras-chave devem ser de três a cinco palavras, com iniciais em minúsculo, separadas por ponto e vírgula e finalizada por ponto. O mesmo vale para o abstract
-\end{resumo}
-
-% ========================================================================
-% RESUMO EM INGLÊS (ABSTRACT)
-% ========================================================================
-\begin{resumo}[ABSTRACT]
-    \begin{otherlanguage*}{english}
-        \setlength{\parindent}{0pt}% Garante que não haverá recuo na primeira linha do abstract
-        This research project presents a proposal for scientific investigation on [RESEARCH TOPIC]. The general objective is to [DESCRIBE THE GENERAL OBJECTIVE]. Methodologically, the study is characterized as [TYPE OF RESEARCH: literature review, case study, experimental], using [QUALITATIVE/QUANTITATIVE] approaches for data collection and analysis. The theoretical framework is based on relevant studies in the field of [FIELD OF KNOWLEDGE]. The expected results aim to contribute to [DESCRIBE EXPECTED RESULTS AND ACADEMIC IMPACT].
-
-        \vspace{\onelineskip}
-        \noindent
-        \textbf{Keywords}: research project; scientific methodology; information technology; academic standardization; investigation.
-    \end{otherlanguage*}
-\end{resumo}
-
-% ========================================================================
-% LISTA DE ILUSTRAÇÕES
+% LISTA DE ILUSTRAÇÕES (OPCIONAL)
 % ========================================================================
 \pdfbookmark[0]{\listfigurename}{lof}
 \begingroup
@@ -90,7 +45,19 @@
 \cleardoublepage
 
 % ========================================================================
-% LISTA DE TABELAS
+% LISTA DE QUADROS (OPCIONAL)
+% ========================================================================
+\pdfbookmark[0]{\listofquadroname}{loq}
+\begingroup
+  \makeatletter
+  \let\addvspace\@gobble
+  \makeatother
+  \listofquadros*
+\endgroup
+\cleardoublepage
+
+% ========================================================================
+% LISTA DE TABELAS (OPCIONAL)
 % ========================================================================
 \pdfbookmark[0]{\listtablename}{lot}
 \begingroup
@@ -102,7 +69,7 @@
 \cleardoublepage
 
 % ========================================================================
-% LISTA DE ABREVIATURAS E SIGLAS
+% LISTA DE ABREVIATURAS E SIGLAS (OPCIONAL)
 % ========================================================================
 % Descomente e adicione as abreviaturas utilizadas no trabalho
 % \begin{siglas}
@@ -113,7 +80,16 @@
 % \end{siglas}
 
 % ========================================================================
-% SUMÁRIO
+% LISTA DE SÍMBOLOS (OPCIONAL)
+% ========================================================================
+% Descomente e adicione os símbolos utilizados no trabalho
+% \begin{simbolos}
+%     \item[$ \Gamma $] Letra grega Gama
+%     \item[$ \Lambda $] Lambda
+% \end{simbolos}
+
+% ========================================================================
+% SUMÁRIO (OBRIGATÓRIO)
 % ========================================================================
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*

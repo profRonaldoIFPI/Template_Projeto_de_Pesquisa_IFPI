@@ -42,7 +42,7 @@ def run_audits():
     # Lendo arquivos de configuração e conteúdo
     config_sty = read_file('config/abntex-ifpi.sty')
     config_tex = read_file('config/config.tex')
-    main_tex = read_file('main.tex')
+    main_tex = read_file('projeto_de_pesquisa.tex')
     pre_textuais = read_file('estrutura/pre_textuais.tex')
     pos_textuais = read_file('estrutura/pos_textuais.tex')
     dados_tex = read_file('estrutura/dados.tex')
@@ -104,37 +104,28 @@ def run_audits():
     })
 
     # --------------------------------------------------------------------------
-    # 5. Resumo e Abstract (Espaçamento Entrelinhas Simples 1,0 e Formatação)
+    # 5. Estrutura Pré-textual Sem Resumo/Abstract (ABNT NBR 15287 / IFPI)
     # --------------------------------------------------------------------------
-    resumo_ok = "\\begin{resumo}" in pre_textuais or "\\begin{resumo}" in main_tex
-    resumo_single_spacing = "SingleSpace" in config_sty or "SingleSpacing" in config_sty or "SingleSpace" in pre_textuais
-    
-    resumo_combo_ok = resumo_ok and resumo_single_spacing
+    resumo_omitted = "\\begin{resumo}" not in pre_textuais
     results.append({
         "num": 5,
-        "title": "Resumo e Abstract (Espaçamento Entrelinhas Simples 1,0)",
-        "status": resumo_combo_ok,
-        "msg": "Resumo e Abstract configurados com espaçamento entrelinhas simples (1,0)." if resumo_combo_ok else "Resumo e Abstract devem ter espaçamento entrelinhas simples (1,0)."
+        "title": "Estrutura Pré-textual sem Resumo/Abstract (ABNT NBR 15287)",
+        "status": resumo_omitted,
+        "msg": "Estrutura pré-textual conforme NBR 15287 (Resumo e Abstract não utilizados em Projeto de Pesquisa)." if resumo_omitted else "Em Projeto de Pesquisa (NBR 15287 / Manual IFPI), não se escreve Resumo nem Abstract."
     })
 
     # --------------------------------------------------------------------------
-    # 6. Formatação das Palavras-chave (Separadas por ;)
+    # 6. Sumário e Listas Pré-textuais em Páginas Individuais
     # --------------------------------------------------------------------------
-    kw_semicolon = False
-    if "Palavras-chave" in pre_textuais:
-        match = re.search(r'Palavras-chave.*?:(.*?)\n', pre_textuais, re.IGNORECASE)
-        if match:
-            kw_text = match.group(1)
-            if ";" in kw_text:
-                kw_semicolon = True
-    else:
-        kw_semicolon = True
-        
+    sumario_ok = "\\tableofcontents" in pre_textuais or "\\tableofcontents" in main_tex
+    listas_sep_ok = "\\cleardoublepage" in pre_textuais
+    
+    pre_structure_ok = sumario_ok and listas_sep_ok
     results.append({
         "num": 6,
-        "title": "Formatação das Palavras-chave (Separadas por ponto e vírgula ';')",
-        "status": kw_semicolon,
-        "msg": "Palavras-chave separadas por ponto e vírgula conforme o Manual IFPI." if kw_semicolon else "As palavras-chave devem ser separadas entre si por ponto e vírgula ';' e finalizadas por ponto '.'."
+        "title": "Sumário e Listas Pré-textuais em Páginas Individuais (Anverso)",
+        "status": pre_structure_ok,
+        "msg": "Sumário e listas organizados em páginas individuais (anverso) conforme ABNT NBR 14724." if pre_structure_ok else "Cada lista pré-textual e o sumário devem iniciar no anverso de uma folha separada."
     })
 
     # --------------------------------------------------------------------------
@@ -198,10 +189,10 @@ def run_audits():
     # --------------------------------------------------------------------------
     # 11. Compilação do PDF
     # --------------------------------------------------------------------------
-    pdf_exists = os.path.exists("main.pdf")
+    pdf_exists = os.path.exists("projeto_de_pesquisa.pdf")
     results.append({
         "num": 11,
-        "title": "Arquivo PDF Gerado (main.pdf)",
+        "title": "Arquivo PDF Gerado (projeto_de_pesquisa.pdf)",
         "status": pdf_exists,
         "msg": "PDF gerado com sucesso." if pdf_exists else "Execute o script gerar_pdf.sh para compilar o documento LaTeX."
     })
@@ -211,8 +202,8 @@ def run_audits():
 def main():
     print_header()
     
-    if not os.path.exists("main.tex"):
-        print(f"{RED}[ERRO CRÍTICO]{RESET} Execute este script na pasta raiz do seu projeto de template (onde está o arquivo main.tex).")
+    if not os.path.exists("projeto_de_pesquisa.tex"):
+        print(f"{RED}[ERRO CRÍTICO]{RESET} Execute este script na pasta raiz do seu projeto de template (onde está o arquivo projeto_de_pesquisa.tex).")
         sys.exit(1)
         
     results = run_audits()

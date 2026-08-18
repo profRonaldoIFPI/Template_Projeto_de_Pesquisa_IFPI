@@ -1,22 +1,31 @@
 % ========================================================================
-% TEMPLATE LATEX PARA PROJETOS DE PESQUISA - IFPI
-% Baseado na classe abntex2 com personalizações para o IFPI
-% Conforme o Manual de Normalização de Trabalhos Acadêmicos do IFPI - 2024 
-% e as normas ABNT NBR:
-%   14724:2024
-%   6024:2012
-%   6027:2012
-%   10520:2023
-%   6023:2018 
-%   15287:2011 / 2025
+% INSTITUTO FEDERAL DO PIAUÍ - IFPI CAMPUS FLORIANO
+% TEMPLATE DE PROJETO DE PESQUISA (ABNT NBR 15287 / MANUAL IFPI 2024)
+% ========================================================================
+% Este arquivo é a matriz principal do seu Projeto de Pesquisa.
+% A estrutura é modular e importa os arquivos das pastas config/ e estrutura/.
+%
+% Conforme a ABNT NBR 14724:2024 (item 4.2.2), NBR 6024 e o Manual do IFPI,
+% o trabalho é organizado exclusivamente em SEÇÕES (primárias, secundárias,
+% terciárias, quaternárias e quinárias) e não em capítulos.
 % ========================================================================
 
 % ========================================================================
-% PREÂMBULO E CONFIGURAÇÕES
+% CONFIGURAÇÕES E METADADOS
 % ========================================================================
+\documentclass[
+    12pt,        % Tamanho da fonte principal
+    openany,     % Seções iniciam em qualquer página
+    oneside,     % Impressão apenas frente
+    a4paper,     % Formato A4
+    english,     % Idioma adicional
+    french,      % Idioma adicional
+    spanish,     % Idioma adicional
+    brazil,      % Idioma principal
+    article      % Estruturação por seções (sem \chapter) conforme NBR 14724:2024
+]{abntex2}
 
 \input{config/config}   % configurações de formatação
-
 \input{estrutura/dados} % dados institucionais e do projeto
 
 % ========================================================================
@@ -38,10 +47,12 @@
 % ELEMENTOS TEXTUAIS
 % ========================================================================
 
-\chapter{INTRODUÇÃO}
-\label{chap:introducao}
+\section{INTRODUÇÃO}
+\label{sec:introducao}
 
-A introdução de um projeto de pesquisa deve apresentar o tema de forma clara e contextualizada, demonstrando sua relevância no cenário atual. Conforme o \citeonline{IFPI_Manual_2024}, este capítulo tem como objetivo situar o leitor no contexto da investigação, apresentando a problematização, a justificativa e a delimitação do objeto de estudo.
+A introdução de um projeto de pesquisa deve apresentar o tema de forma clara e contextualizada, demonstrando sua relevância no cenário atual. Conforme o \citeonline{IFPI_Manual_2024}, esta seção tem como objetivo situar o leitor no contexto da investigação, apresentando a problematização, a justificativa e a delimitação do objeto de estudo.
+
+Em conformidade estrita com a ABNT NBR 14724:2024 (item 4.2.2) e o Manual de Normalização do IFPI (2024), os trabalhos acadêmicos são estruturados exclusivamente em \textbf{seções} e não em capítulos. 
 
 O tema desta pesquisa insere-se no campo de [ÁREA DE CONHECIMENTO], especificamente abordando [TEMA ESPECÍFICO]. A escolha deste tema justifica-se pela [JUSTIFICATIVA INICIAL], considerando sua relevância tanto no âmbito acadêmico quanto na aplicação prática.
 
@@ -50,8 +61,8 @@ Segundo \citeonline{marconi2017}, a área de [ÁREA DE CONHECIMENTO] tem apresen
 Uma alteração fundamental trazida pela norma ABNT NBR 10520:2023 determina o uso de caixa mista (primeira letra maiúscula e demais minúsculas) nas chamadas de autor inseridas entre parênteses, por exemplo \cite{marconi2017}, diferentemente da norma antiga que exigia caixa alta.
 
 
-\section{PROBLEMA DE PESQUISA}
-\label{sec:problema}
+\subsection{PROBLEMA DE PESQUISA}
+\label{subsec:problema}
 
 O problema de pesquisa constitui o elemento central que orienta todo o desenvolvimento do estudo. Conforme \citeonline{gil2019}, um problema bem formulado deve ser claro, preciso e operacional, permitindo a definição de objetivos específicos e a escolha de métodos adequados para sua investigação.
 
@@ -64,8 +75,8 @@ Diante do exposto, formula-se o seguinte problema de pesquisa:
 Este questionamento surge da observação de que [CONTEXTUALIZAÇÃO DO PROBLEMA], conforme evidenciado por \citeonline{silva2023} em seus estudos sobre [ÁREA RELACIONADA].
 
 
-\section{HIPÓTESES}
-\label{sec:hipoteses}   
+\subsection{HIPÓTESES}
+\label{subsec:hipoteses}   
 
 As hipóteses representam respostas provisórias ao problema de pesquisa, baseadas no conhecimento teórico disponível e na experiência do pesquisador. Segundo \citeonline{marconi2017}, as hipóteses devem ser testáveis e formuladas de maneira clara e precisa.
 
@@ -82,18 +93,18 @@ Para o problema apresentado, formulam-se as seguintes hipóteses:
 Essas hipóteses serão testadas através da metodologia proposta, permitindo confirmar ou refutar as suposições iniciais da pesquisa.
 
 
-\section{OBJETIVOS}
-\label{sec:objetivos}
+\subsection{OBJETIVOS}
+\label{subsec:objetivos}
 
 Os objetivos definem o que se pretende alcançar com a realização da pesquisa. Devem ser formulados de forma clara e precisa, utilizando verbos no infinitivo que expressem ações concretas e mensuráveis.
 
-\subsection{Objetivo Geral}
-\label{subsec:objetivo-geral}
+\subsubsection{Objetivo Geral}
+\label{subsubsec:objetivo-geral}
 
 [DESCREVER O OBJETIVO GERAL DA PESQUISA, UTILIZANDO VERBO NO INFINITIVO E EXPRESSANDO DE FORMA CLARA O QUE SE PRETENDE ALCANÇAR COM O ESTUDO]
 
-\subsection{Objetivos Específicos}
-\label{subsec:objetivos-especificos}
+\subsubsection{Objetivos Específicos}
+\label{subsubsec:objetivos-especificos}
 
 \begin{enumerate}
     \item Objetivo específico 1;
@@ -103,8 +114,8 @@ Os objetivos definem o que se pretende alcançar com a realização da pesquisa.
 \end{enumerate}
 
 
-\section{JUSTIFICATIVA}
-\label{sec:justificativa}
+\subsection{JUSTIFICATIVA}
+\label{subsec:justificativa}
 
 A justificativa deve demonstrar a relevância e a importância da pesquisa, apresentando argumentos que evidenciem sua contribuição para o avanço do conhecimento científico e/ou para a solução de problemas práticos.
 
@@ -119,15 +130,30 @@ Esta pesquisa justifica-se por diversos aspectos:
 \textbf{Viabilidade:} A pesquisa é viável considerando os recursos disponíveis, o tempo previsto para sua execução e o acesso às fontes de informação necessárias.
 
 
-\chapter{REFERENCIAL TEÓRICO}
-\label{chap:referencial}
+\section{REFERENCIAL TEÓRICO}
+\label{sec:referencial}
 
-O referencial teórico constitui a base conceitual da pesquisa, apresentando as teorias, conceitos e estudos que fundamentam a investigação. Conforme exposto por \citeonline{IFPI_Manual_2024}, este capítulo destina-se a detalhar as leituras e embasamentos teóricos que sustentam a proposta, explicando, classificando e demonstrando o estado da arte do objeto de estudo.
+O referencial teórico constitui a base conceitual da pesquisa, apresentando as teorias, conceitos e estudos que fundamentam a investigação. Conforme exposto por \citeonline{IFPI_Manual_2024}, esta seção destina-se a detalhar as leituras e embasamentos teóricos que sustentam a proposta, explicando, classificando e demonstrando o estado da arte do objeto de estudo.
 
-\section{TÍTULO DA SEÇÃO TEÓRICA}
-\label{sec:fundamentacao1}
+\subsection{CONCEITOS FUNDAMENTAIS}
+\label{subsec:fundamentacao1}
 
 Aqui você deve escrever e citar autores que embasarão teoricamente o projeto. Para citações no texto, utilize \verb|\citeonline{chave}| para o formato autor no texto, como \citeonline{creswell2018}, ou \verb|\cite{chave}| para citações entre parênteses \cite{gil2019}.
+
+\subsubsection{Normalização Científica e Tipografia}
+\label{subsubsec:normalizacao}
+
+Conforme a ABNT NBR 6024 e o Manual do IFPI (2024), a numeração progressiva e a formatação tipográfica dos títulos das seções devem obedecer rigorosamente a uma hierarquia estabelecida.
+
+\paragraph{Citações e Regras da ABNT}
+\label{para:citacoes}
+
+As seções quaternárias (criadas com o comando \verb|\paragraph{}|) são formatadas com fonte em caixa baixa (inicial maiúscula) e estilo itálico.
+
+\subparagraph{Diretrizes Específicas do IFPI}
+\label{subpara:diretrizes}
+
+As seções quinárias (criadas com o comando \verb|\subparagraph{}|) utilizam fonte em caixa baixa (inicial maiúscula) com estilo regular (sem negrito e sem itálico).
 
 \begin{figure}[htbp]
     \centering
@@ -147,8 +173,8 @@ Quando elementos visuais forem inseridos no texto, devem ser obrigatoriamente id
 Quando uma citação direta ultrapassa três linhas do texto original, ela deve ser apresentada em destaque, com recuo especial de 4 cm da margem esquerda, sem o uso de aspas, utilizando fonte menor e espaçamento simples entre as linhas. Esta formatação diferenciada permite ao leitor identificar claramente a reprodução literal da fonte \cite{ABNT_NBR10520_2023}.
 \end{citacao}
 
-\section{ESTUDOS RELACIONADOS}
-\label{sec:estudos-relacionados} 
+\subsection{ESTUDOS RELACIONADOS}
+\label{subsec:estudos-relacionados} 
 
 Esta seção apresenta uma revisão dos principais estudos relacionados ao tema da pesquisa, evidenciando o estado da arte e identificando lacunas.
 
@@ -225,13 +251,13 @@ A aplicação do efeito zebrado (\textit{zebra striping}) melhora a legibilidade
 Recomenda-se o uso da ferramenta online \textit{Tables Generator}\footnote{https://www.tablesgenerator.com/} para estruturar tabelas e quadros visualmente antes da inclusão no código LaTeX.
 
 
-\chapter{METODOLOGIA}
-\label{chap:metodologia}
+\section{METODOLOGIA}
+\label{sec:metodologia}
 
 A metodologia descreve detalhadamente os procedimentos que serão adotados para a realização da pesquisa. O texto deve manter um tratamento impessoal e objetivo em conformidade com o \citeonline{IFPI_Manual_2024}.
 
-\section{CARACTERIZAÇÃO DA PESQUISA}
-\label{sec:caracterizacao}
+\subsection{CARACTERIZAÇÃO DA PESQUISA}
+\label{subsec:caracterizacao}
 
 Esta pesquisa pode ser caracterizada, quanto aos seus objetivos, como EXPLORATÓRIA, uma vez que busca proporcionar maior familiaridade com o problema. Segundo \citeonline{gil2019}, pesquisas dessa natureza têm como objetivo o aprimoramento de ideias ou a descoberta de intuições.
 
@@ -247,15 +273,15 @@ Em relação aos procedimentos técnicos, será realizada uma PESQUISA BIBLIOGR�
     \label{fig:esquema_metodologico}
 \end{figure}
 
-\section{POPULAÇÃO E AMOSTRA}
-\label{sec:populacao-amostra}
+\subsection{POPULAÇÃO E AMOSTRA}
+\label{subsec:populacao-amostra}
 
 A população desta pesquisa é constituída por [DEFINIR A POPULAÇÃO]. Para a definição da amostra, será utilizada a técnica de [TIPO DE AMOSTRAGEM], que, segundo \citeonline{hair2019}, é adequada para garantir a representatividade dos dados.
 
-O tamanho da amostra foi calculado considerando [CRITÉRIOS DE CÁLCULO], resultando em [NÚMERO] participantes/elementos.
+O tamanho da amostra foi calculated considerando [CRITÉRIOS DE CÁLCULO], resultando em [NÚMERO] participantes/elementos.
 
-\section{COLETA DE DADOS}
-\label{sec:coleta-dados}
+\subsection{TÉCNICAS DE COLETA DE DADOS}
+\label{subsec:coleta-dados}
 
 A coleta de dados será realizada através de [INSTRUMENTOS DE COLETA], que permitirão obter informações sobre [TIPO DE INFORMAÇÕES].
 
@@ -265,19 +291,19 @@ Os instrumentos escolhidos foram:
     \item \textbf{[INSTRUMENTO 2]:} [DESCRIÇÃO E JUSTIFICATIVA].
 \end{itemize}
 
-\section{ANÁLISE DOS DADOS}
-\label{sec:analise-dados}
+\subsection{ANÁLISE DOS DADOS}
+\label{subsec:analise-dados}
 
 Os dados coletados serão analisados utilizando [TÉCNICAS DE ANÁLISE]. Para dados quantitativos, utilizar-se-á estatística descritiva e inferencial. Os dados qualitativos serão submetidos à análise de conteúdo.
 
-\section{ASPECTOS ÉTICOS}
-\label{sec:aspectos-eticos}
+\subsection{ASPECTOS ÉTICOS}
+\label{subsec:aspectos-eticos}
 
 Esta pesquisa será desenvolvida respeitando os princípios éticos estabelecidos pela Resolução nº 466/2012 do Conselho Nacional de Saúde. [SE APLICÁVEL: O projeto será submetido ao Comitê de Ética em Pesquisa (CEP) antes da coleta de dados]. Todos os participantes assinarão o Termo de Consentimento Livre e Esclarecido (TCLE).
 
 
-\chapter{RESULTADOS ESPERADOS}
-\label{chap:resultados-esperados}
+\section{RESULTADOS ESPERADOS}
+\label{sec:resultados-esperados}
 
 Os resultados esperados descrevem os produtos, impactos e transformações que a pesquisa pretende alcançar, devendo alinhar-se aos objetivos propostos:
 
@@ -289,23 +315,23 @@ Os resultados esperados descrevem os produtos, impactos e transformações que a
 \end{itemize}
 
 
-\chapter{RECURSOS}
-\label{chap:recursos}
+\section{RECURSOS}
+\label{sec:recursos}
 
 Esta seção discrimina os recursos necessários para viabilizar a execução do projeto, conforme orientação da NBR 15287.
 
-\section{Recursos Humanos}
-\label{sec:recursos-humanos}
+\subsection{RECURSOS HUMANOS}
+\label{subsec:recursos-humanos}
 
 [DESCREVER A EQUIPE ENVOLVIDA: PESQUISADOR PRINCIPAL, ORIENTADOR, COORIENTADOR E COLABORADORES, DESTACANDO AS ATIVIDADES DE CADA UM].
 
-\section{Recursos Materiais e Infraestruturais}
-\label{sec:recursos-materiais}
+\subsection{RECURSOS MATERIAIS E INFRAESTRUTURAIS}
+\label{subsec:recursos-materiais}
 
 [DETALHAR INFRAESTRUTURA DE LABORATÓRIOS, EQUIPAMENTOS, SOFTWARES E INSUMOS NECESSÁRIOS].
 
-\subsection{Orçamento}
-\label{subsec:orcamento}
+\subsubsection{Orçamento}
+\label{subsubsec:orcamento}
 
 A \autoref{tab:orcamento} sintetiza os custos previstos por categoria de despesa para a realização da pesquisa.
 
@@ -329,8 +355,8 @@ A \autoref{tab:orcamento} sintetiza os custos previstos por categoria de despesa
 \end{table}
 
 
-\chapter{CRONOGRAMA}
-\label{chap:cronograma}
+\section{CRONOGRAMA DE EXECUÇÃO}
+\label{sec:cronograma}
 
 O cronograma apresenta a distribuição temporal das atividades previstas para a realização da pesquisa. O \autoref{qua:cronograma} detalha as etapas e seus respectivos meses de execução.
 
