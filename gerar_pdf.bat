@@ -11,6 +11,13 @@ pdflatex -interaction=nonstopmode projeto_de_pesquisa.tex
 pdflatex -interaction=nonstopmode projeto_de_pesquisa.tex
 
 echo ==========================================================
+rem Limpeza de arquivos temporários e auxiliares gerados pelo LaTeX
+echo  Limpando arquivos temporários de compilação...
+del /q /f *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind *.lof *.log *.lol *.lot *.loq *.out *.toc *.synctex* *.fdb_latexmk *.fls *.bcf *.run.xml 2>nul
+del /q /f config\*.aux config\*.log config\*.fls config\*.fdb_latexmk 2>nul
+del /q /f estrutura\*.aux estrutura\*.log 2>nul
+echo ==========================================================
+
 rem Verifica se a compilação gerou o projeto_de_pesquisa.pdf com sucesso
 if exist projeto_de_pesquisa.pdf (
     echo ✅ Sucesso! O PDF foi gerado como projeto_de_pesquisa.pdf
@@ -19,3 +26,4 @@ if exist projeto_de_pesquisa.pdf (
 )
 echo ==========================================================
 pause
+
