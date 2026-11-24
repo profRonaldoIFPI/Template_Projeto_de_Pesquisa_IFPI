@@ -585,19 +585,24 @@
 \renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
 
 % Configuração de títulos de seções quaternárias (Quaternárias: Caixa Baixa, Itálico)
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\itshape}
+\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
+\providecommand{\ABNTEXparagraphfont}{}
+\providecommand{\ABNTEXparagraphfontsize}{}
 \renewcommand{\ABNTEXparagraphfont}{\itshape}
 \renewcommand{\ABNTEXparagraphfontsize}{\normalsize}
 \setparaheadstyle{\itshape\normalsize}
 \setafterparaskip{1ex plus 0.2ex}
 
 % Configuração de títulos de seções quinárias (Quinárias: Caixa Baixa, Regular/Sem Negrito/Sem Itálico)
+\providecommand{\ABNTEXsubparagraphfont}{}
+\providecommand{\ABNTEXsubparagraphfontsize}{}
 \renewcommand{\ABNTEXsubparagraphfont}{\normalfont}
 \renewcommand{\ABNTEXsubparagraphfontsize}{\normalsize}
 \setsubparaheadstyle{\normalfont\normalsize}
 \setaftersubparaskip{1ex plus 0.2ex}
 
 % Forçar automaticamente a capitalização correta para as seções na compilação
-\usepackage{expl3}
 \ExplSyntaxOn
 \let\origsection\section
 \let\origsubsection\subsection
@@ -675,9 +680,9 @@
 
 % Evitar avisos de tokens não permitidos em strings de PDF pelo hyperref
 \pdfstringdefDisableCommands{
-  \DeclareRobustCommand{\abntifpiUppercase}[1]{#1}
-  \DeclareRobustCommand{\abntifpiSentencecase}[1]{#1}
-  \DeclareRobustCommand{\sigla}[1]{#1}
+  \def\abntifpiUppercase#1{#1}
+  \def\abntifpiSentencecase#1{#1}
+  \def\sigla#1{#1}
 }
 
 % Atalho para manter siglas/acrônimos sempre em maiúsculas (protegidas contra lowercase automático)

@@ -1,18 +1,4 @@
-% ========================================================================
-% CLASSE DO DOCUMENTO
-% ========================================================================
-\documentclass[
-    12pt,        % Tamanho da fonte principal
-    openany,     % Capitulos podem iniciar em qualquer pagina
-    oneside,     % Impressao apenas frente
-    a4paper,     % Formato A4
-    english,     % Idioma adicional
-    french,      % Idioma adicional
-    spanish,     % Idioma adicional
-    brazil,      % Idioma principal
-    article      % Formato de artigo/projeto (estruturação por seções conforme NBR 14724:2024)
-]{abntex2}
-
+% !TEX root = ../projeto_de_pesquisa.tex
 % ========================================================================
 % PACOTES FUNDAMENTAIS
 % ========================================================================
@@ -26,6 +12,12 @@
 % Idioma
 \usepackage[brazil]{babel}
 
+% Cores e listas/siglas (carregados antes de abntex-ifpi/caption para evitar conflito com tocbasic/xcolor)
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{acronym}
+\usepackage{nomencl}
+
 % Regras ABNT / referencias
 \usepackage[alf,abnt-and-type=e,abnt-emphasize=bf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite}
 \usepackage{config/abntex-ifpi}
@@ -35,7 +27,6 @@
 % ========================================================================
 \usepackage{microtype}
 \usepackage{indentfirst}
-\usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath,amsfonts,amssymb}
@@ -53,11 +44,6 @@
 %     table-number-alignment = right
 % }
 % \newcolumntype{d}[1]{S[table-format=#1, input-symbols = {-}]}
-
-% Listas, siglas e simbolos
-\usepackage{enumitem}
-\usepackage{acronym}
-\usepackage{nomencl}
 
 % URLs
 \usepackage{url}
@@ -116,8 +102,7 @@
         pdfsubject={\imprimirpreambulo},
         pdfcreator={LaTeX with abnTeX2},
         pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa}{IFPI},
-        colorlinks=false,
-        hidelinks=true,
+        hidelinks,
         linkcolor=black,
         citecolor=black,
         filecolor=black,
